@@ -8,3 +8,6 @@ __pycache__/
 .env
 
 ~$*
+# Phase 2 generated artifacts (rebuilt by scripts)
+data/processed/
+data/vectordb/
