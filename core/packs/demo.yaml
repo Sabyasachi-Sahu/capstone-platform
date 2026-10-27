@@ -1,0 +1,11 @@
+name: demo
+title: Demo pack (reuses the hospital index, to prove a pack is only configuration)
+collection: patients
+docs_file: data/processed/patient_docs.jsonl
+top_k: 3
+id_pattern: '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'
+test_file: tests/hospital_p3.yaml
+system_prompt: |
+  You are a clinical data assistant. Answer ONLY from the patient records
+  provided in the context. Cite the patient ID in square brackets for every
+  fact you use. If the context does not contain the answer, say so.

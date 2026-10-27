@@ -1,0 +1,377 @@
+{
+  "pack": "hospital",
+  "timestamp": "20261027_211438",
+  "runs": 3,
+  "questions": 10,
+  "run_scores": [
+    0.7,
+    0.6,
+    0.7
+  ],
+  "mean": 0.6666666666666666,
+  "spread": 0.04714045207910316,
+  "per_question": {
+    "H01": 3,
+    "H02": 3,
+    "H03": 3,
+    "H04": 3,
+    "H05": 0,
+    "H06": 2,
+    "H07": 3,
+    "H08": 0,
+    "H09": 0,
+    "H10": 3
+  },
+  "details": [
+    {
+      "run": 1,
+      "id": "H01",
+      "answer": "**Diabetes mellitus type 2**:  \n[2c588417-7537-a68c-7c2d-e1a45847fcc9] [dd7be1e2-6010-b8f0-dc6a-dbc355eb2f68] [2c167999-289d-95fa-5c27-7d8b8d35348c] [173d0512-ea8a-cd21-293d-b2fb46f5ad3e] [c39f716d-d92d-e6e9-405a-e94d2ecad31f]",
+      "passed": true,
+      "reasons": [],
+      "cited": 5,
+      "unverified": 0,
+      "seconds": 4.7
+    },
+    {
+      "run": 1,
+      "id": "H02",
+      "answer": "**Essential hypertension**:  \n7e5ef194-7a64-dec9-07c3-43dab97ef9da [7e5ef194-7a64-dec9-07c3-43dab97ef9da]  \n7f513333-a491-f052-0bc3-d5f6c36143af [7f513333-a491-f052-0bc3-d5f6c36143af]  \n8c9658c1-37b5-c9fc-2510-1190835eca52 [8c9658c1-37b5-c9fc-2510-1190835eca52]  \na9b9bd2b-7d3d-6a4c-8e2c-8a9f39710611 [a9b9bd2b-7d3d-6a4c-8e2c-8a9f39710611]  \n19b87c0d-b841-18cf-3cb1-7218e853b384 [19b87c0d-b841-18cf-3cb1-7218e853b384]",
+      "passed": true,
+      "reasons": [],
+      "cited": 5,
+      "unverified": 0,
+      "seconds": 5.4
+    },
+    {
+      "run": 1,
+      "id": "H03",
+      "answer": "**Ischemic heart disease** [438902c7-ca85-c677-ca8a-335d9c6791c7] [e632520a-2e4f-3419-c0f1-1f7b89f11d9c] [f4a77c96-9bf4-edcf-ecc7-a95c9da94860] [cf33d965-2338-e565-fe36-3c6ec686cbad] [994d6249-48af-8064-c677-0fb58b1b59a8]",
+      "passed": true,
+      "reasons": [],
+      "cited": 5,
+      "unverified": 0,
+      "seconds": 5.1
+    },
+    {
+      "run": 1,
+      "id": "H04",
+      "answer": "**Acute bronchitis** [07811815-599c-8e38-f64b-2e0df63a35c3] [bc304f26-e510-f5a4-086e-0e698e3f212d] [5a6e53e7-1dbd-4705-c4be-6ca33a734e67] [ac25c3c2-ef45-4a62-5177-8124712ed270] [a71f9d8c-e1c4-c4fd-5ee5-5f81377c4c26]",
+      "passed": true,
+      "reasons": [],
+      "cited": 5,
+      "unverified": 0,
+      "seconds": 6.2
+    },
+    {
+      "run": 1,
+      "id": "H05",
+      "answer": "**Hypertriglyceridemia**\u2002\u2013 [2c588417-7537-a68c-7c2d-e1a45847fcc9], [5bcd499f-a616-8db9-fc87-3bde153a1fcd], [dd7be1e2-6010-b8f0-dc6a-dbc355eb2f68], [c39f716d-d92d-e6e9-405a-e94d2ecad31f], [2c167999-289d-95fa-5c27-7d8b8d35348c]\n\n**Metabolic syndrome X**\u2002\u2013 [2c588417-7537-a68c-7c2d-e1a45847fcc9], [5bcd499f-a616-8db9-fc87-3bde153a1fcd], [dd7be1e2-6010-b8f0-dc6a-dbc355eb2f68], [c39f716d-d92d-e6e9-405a-e94d2ecad31f], [2c167999-289d-95fa-5c27-7d8b8d35348c]\n\n**Hyperglycemia**\u2002\u2013 [2c588417-7537-a68c-7c2d-e1a45847fcc9], [5bcd499f-a616-8db9-fc87-3bde153a1fcd], [c39f716d-d92d-e6e9-405a-e94d2ecad31f]\n\n**Neuropathy due to type\u202f2 diabetes mellitus**\u2002\u2013 [2c588417-7537-a68c-7c2d-e1a45847fcc9], [5bcd499f-a616-8db9-fc87-3bde153a1fcd], [2c167999-289d-95fa-5c27-7d8b8d35348c], [c39f716d-d92d-e6e9-405a-e94d2ecad31f]\n\n**Anemia**\u2002\u2013 [2c588417-7537-a68c-7c2d-e1a45847fcc9], [c39f716d-d92d-e6e9-405a-e94d2ecad31f], [2c167999-289d-95fa-5c27-7d8b8d35348c]",
+      "passed": false,
+      "reasons": [
+        "1 wrong claim(s)"
+      ],
+      "cited": 5,
+      "unverified": 0,
+      "claims": {
+        "supported": 19,
+        "wrong": 1,
+        "unclear": 0
+      },
+      "seconds": 12.1
+    },
+    {
+      "run": 1,
+      "id": "H06",
+      "answer": "**Acute viral pharyngitis** \u2013 [7f513333\u2011a491\u2011f052\u20110bc3\u2011d5f6c36143af], [85009e2d\u20119906\u201166b8\u2011dce9\u2011a18b2b3a9d0a]  \n**Gingival disease** \u2013 [7f513333\u2011a491\u2011f052\u20110bc3\u2011d5f6c36143af], [a9b9bd2b\u20117d3d\u20116a4c\u20118e2c\u20118a9f39710611]  \n**Gingivitis** \u2013 [7f513333\u2011a491\u2011f052\u20110bc3\u2011d5f6c36143af], [7e5ef194\u20117a64\u2011dec9\u201107c3\u201143dab97ef9da], [8c9658c1\u201137b5\u2011c9fc\u20112510\u20111190835eca52], [85009e2d\u20119906\u201166b8\u2011dce9\u2011a18b2b3a9d0a], [a9b9bd2b\u20117d3d\u20116a4c\u20118e2c\u20118a9f39710611]  \n**Primary dental caries** \u2013 [7f513333\u2011a491\u2011f052\u20110bc3\u2011d5f6c36143af], [8c9658c1\u201137b5\u2011c9fc\u20112510\u20111190835eca52], [a9b9bd2b\u20117d3d\u20116a4c\u20118e2c\u20118a9f39710611]  \n**Viral sinusitis** \u2013 [7f513333\u2011a491\u2011f052\u20110bc3\u2011d5f6c36143af], [85009e2d\u20119906\u201166b8\u2011dce9\u2011a18b2b3a9d0a]  \n**Acute infective cystitis** \u2013 [7e5ef194\u20117a64\u2011dec9\u201107c3\u201143dab97ef9da], [a9b9bd2b\u20117d3d\u20116a4c\u20118e2c\u20118a9f39710611]  \n**Infection of tooth** \u2013 [7e5ef194\u20117a64\u2011dec9\u201107c3\u201143dab97ef9da]  \n**Acute bronchitis** \u2013 [8c9658c1\u201137b5\u2011c9fc\u20112510\u20111190835eca52], [a9b9bd2b\u20117d3d\u20116a4c\u20118e2c\u20118a9f39710611]  \n**Hyperlipidemia** \u2013 [85009e2d\u20119906\u201166b8\u2011dce9\u2011a18b2b3a9d0a]",
+      "passed": true,
+      "reasons": [],
+      "cited": 5,
+      "unverified": 0,
+      "claims": {
+        "supported": 20,
+        "wrong": 0,
+        "unclear": 0
+      },
+      "seconds": 16.6
+    },
+    {
+      "run": 1,
+      "id": "H07",
+      "answer": "**Neuropathy due to type 2 diabetes mellitus** \u2013 Patients: 2c588417-7537-a68c-7c2d-e1a45847fcc9, c39f716d-d92d-e6e9-405a-e94d2ecad31f, 6bb007b9-8692-0656-5d87-7fe7db858543, f143bc9b-cc66-d1f0-e857-47b1e133e5df, 5bcd499f-a616-8db9-fc87-3bde153a1fcd.",
+      "passed": true,
+      "reasons": [],
+      "cited": 5,
+      "unverified": 0,
+      "seconds": 5.4
+    },
+    {
+      "run": 1,
+      "id": "H08",
+      "answer": "**Diabetes mellitus type 2**: [449a8a21-c29b-08b6-2043-15e903ca96d1], [6bb007b9-8692-0656-5d87-7fe7db858543], [dd7be1e2-6010-b8f0-dc6a-dbc355eb2f68], [2c588417-7537-a68c-7c2d-e1a45847fcc9]  \n**Diabetes\u2011related kidney disorders**: [b6396589-3dc3-6d4a-f18f-fe6370f89f94]  \n\nTotal patients with diabetes (including those with diabetes\u2011related complications): **5**.",
+      "passed": false,
+      "reasons": [
+        "answer does not say it only sees a sample"
+      ],
+      "cited": 5,
+      "unverified": 0,
+      "seconds": 10.2
+    },
+    {
+      "run": 1,
+      "id": "H09",
+      "answer": "**Essential hypertension**: 19b87c0d-b841-18cf-3cb1-7218e853b384 [19b87c0d-b841-18cf-3cb1-7218e853b384], 8c9658c1-37b5-c9fc-2510-1190835eca52 [8c9658c1-37b5-c9fc-2510-1190835eca52], 7f513333-a491-f052-0bc3-d5f6c36143af [7f513333-a491-f052-0bc3-d5f6c36143af], 7e5ef194-7a64-dec9-07c3-43dab97ef9da [7e5ef194-7a64-dec9-07c3-43dab97ef9da], 8af794e7-e5e9-0dc1-3eaf-59cfc1bad320 [8af794e7-e5e9-0dc1-3eaf-59cfc1bad320]",
+      "passed": false,
+      "reasons": [
+        "answer does not say it only sees a sample"
+      ],
+      "cited": 5,
+      "unverified": 0,
+      "seconds": 5.1
+    },
+    {
+      "run": 1,
+      "id": "H10",
+      "answer": "I\u2019m sorry, but the records provided do not contain information about patient\u202f449a8a21\u2011c29b\u201108b6\u20112043\u201115e903ca96d1.",
+      "passed": true,
+      "reasons": [],
+      "cited": 0,
+      "unverified": 0,
+      "seconds": 9.8
+    },
+    {
+      "run": 2,
+      "id": "H01",
+      "answer": "**Diabetes mellitus type 2**: [2c588417-7537-a68c-7c2d-e1a45847fcc9], [dd7be1e2-6010-b8f0-dc6a-dbc355eb2f68], [2c167999-289d-95fa-5c27-7d8b8d35348c], [173d0512-ea8a-cd21-293d-b2fb46f5ad3e], [c39f716d-d92d-e6e9-405a-e94d2ecad31f]",
+      "passed": true,
+      "reasons": [],
+      "cited": 5,
+      "unverified": 0,
+      "seconds": 6.4
+    },
+    {
+      "run": 2,
+      "id": "H02",
+      "answer": "**Essential hypertension**: [7e5ef194-7a64-dec9-07c3-43dab97ef9da] [7f513333-a491-f052-0bc3-d5f6c36143af] [8c9658c1-37b5-c9fc-2510-1190835eca52] [a9b9bd2b-7d3d-6a4c-8e2c-8a9f39710611] [19b87c0d-b841-18cf-3cb1-7218e853b384]",
+      "passed": true,
+      "reasons": [],
+      "cited": 5,
+      "unverified": 0,
+      "seconds": 3.3
+    },
+    {
+      "run": 2,
+      "id": "H03",
+      "answer": "**Ischemic heart disease** [438902c7-ca85-c677-ca8a-335d9c6791c7], [e632520a-2e4f-3419-c0f1-1f7b89f11d9c], [f4a77c96-9bf4-edcf-ecc7-a95c9da94860], [cf33d965-2338-e565-fe36-3c6ec686cbad], [994d6249-48af-8064-c677-0fb58b1b59a8]",
+      "passed": true,
+      "reasons": [],
+      "cited": 5,
+      "unverified": 0,
+      "seconds": 4.4
+    },
+    {
+      "run": 2,
+      "id": "H04",
+      "answer": "**Acute bronchitis** [07811815-599c-8e38-f64b-2e0df63a35c3], [bc304f26-e510-f5a4-086e-0e698e3f212d], [5a6e53e7-1dbd-4705-c4be-6ca33a734e67], [ac25c3c2-ef45-4a62-5177-8124712ed270], [a71f9d8c-e1c4-c4fd-5ee5-5f81377c4c26]",
+      "passed": true,
+      "reasons": [],
+      "cited": 5,
+      "unverified": 0,
+      "seconds": 4.7
+    },
+    {
+      "run": 2,
+      "id": "H05",
+      "answer": "**Hypertriglyceridemia**: [2c588417-7537-a68c-7c2d-e1a45847fcc9] [5bcd499f-a616-8db9-fc87-3bde153a1fcd] [dd7be1e2-6010-b8f0-dc6a-dbc355eb2f68] [c39f716d-d92d-e6e9-405a-e94d2ecad31f] [2c167999-289d-95fa-5c27-7d8b8d35348c]  \n\n**Metabolic syndrome X**: [2c588417-7537-a68c-7c2d-e1a45847fcc9] [5bcd499f-a616-8db9-fc87-3bde153a1fcd] [dd7be1e2-6010-b8f0-dc6a-dbc355eb2f68] [c39f716d-d92d-e6e9-405a-e94d2ecad31f] [2c167999-289d-95fa-5c27-7d8b8d35348c]  \n\n**Hyperglycemia**: [2c588417-7537-a68c-7c2d-e1a45847fcc9] [5bcd499f-a616-8db9-fc87-3bde153a1fcd] [c39f716d-d92d-e6e9-405a-e94d2ecad31f]  \n\n**Anemia**: [2c588417-7537-a68c-7c2d-e1a45847fcc9] [c39f716d-d92d-e6e9-405a-e94d2ecad31f] [2c167999-289d-95fa-5c27-7d8b8d35348c]  \n\n**Neuropathy due to type 2 diabetes mellitus**: [2c588417-7537-a68c-7c2d-e1a45847fcc9] [5bcd499f-a616-8db9-fc87-3bde153a1fcd] [c39f716d-d92d-e6e9-405a-e94d2ecad31f]  \n\n**Polyp of colon**: [2c588417-7537-a68c-7c2d-e1a45847fcc9] [5bcd499f-a616-8db9-fc87-3bde153a1fcd] [dd7be1e2-6010-b8f0-dc6a-dbc355eb2f68]  \n\n**Essential hypertension**: [2c588417-7537-a68c-7c2d-e1a45847fcc9] [dd7be1e2-6010-b8f0-dc6a-dbc355eb2f68]  \n\n**Pulmonary emphysema**: [5bcd499f-a616-8db9-fc87-3bde153a1fcd]  \n\n**Gingival disease**: [2c588417-7537-a68c-7c2d-e1a45847fcc9] [5bcd499f-a616-8db9-fc87-3bde153a1fcd] [dd7be1e2-6010-b8f0-dc6a-dbc355eb2f68] [c39f716d-d92d-e6e9-405a-e94d2ecad31f] [2c167999-289d-95fa-5c27-7d8b8d35348c]  \n\n**Gingivitis**: [2c588417-7537-a68c-7c2d-e1a45847fcc9] [5bcd499f-a616-8db9-fc",
+      "passed": false,
+      "reasons": [
+        "5 wrong claim(s)"
+      ],
+      "cited": 5,
+      "unverified": 0,
+      "claims": {
+        "supported": 35,
+        "wrong": 5,
+        "unclear": 0
+      },
+      "seconds": 15.7
+    },
+    {
+      "run": 2,
+      "id": "H06",
+      "answer": "**Acute viral pharyngitis**  \n[7f513333-a491-f052-0bc3-d5f6c36143af], [7e5ef194-7a64-dec9-07c3-43dab97ef9da], [85009e2d-9906-66b8-dce9-a18b2b3a9d0a]\n\n**Gingivitis**  \n[7f513333-a491-f052-0bc3-d5f6c36143af], [7e5ef194-7a64-dec9-07c3-43dab97ef9da], [8c9658c1-37b5-c9fc-2510-1190835eca52], [85009e2d-9906-66b8-dce9-a18b2b3a9d0a], [a9b9bd2b-7d3d-6a4c-8e2c-8a9f39710611]\n\n**Gingival disease**  \n[7f513333-a491-f052-0bc3-d5f6c36143af], [a9b9bd2b-7d3d-6a4c-8e2c-8a9f39710611]\n\n**Primary dental caries**  \n[7f513333-a491-f052-0bc3-d5f6c36143af], [8c9658c1-37b5-c9fc-2510-1190835eca52], [a9b9bd2b-7d3d-6a4c-8e2c-8a9f39710611]\n\n**Viral sinusitis**  \n[7f513333-a491-f052-0bc3-d5f6c36143af], [85009e2d-9906-66b8-dce9-a18b2b3a9d0a]\n\n**Acute infective cystitis**  \n[7e5ef194-7a64-dec9-07c3-43dab97ef9da], [a9b9bd2b-7d3d-6a4c-8e2c-8a9f39710611]\n\n**Infection of tooth**  \n[7e5ef194-7a64-dec9-07c3-43dab97ef9da]\n\n**Acute bronchitis**  \n[8c9658c1-37b5-c9fc-2510-1190835eca52], [a9b9bd2b-7d3d-6a4c-8e2c-8a9f39710611]\n\n**Hyperlipidemia**  \n[85009e2d-9906-66b8-dce9-a18b2b3a9d0a]",
+      "passed": false,
+      "reasons": [
+        "no checkable claims (no bold condition names with IDs)"
+      ],
+      "cited": 5,
+      "unverified": 0,
+      "claims": {
+        "supported": 0,
+        "wrong": 0,
+        "unclear": 0
+      },
+      "seconds": 11.3
+    },
+    {
+      "run": 2,
+      "id": "H07",
+      "answer": "**Neuropathy due to type 2 diabetes mellitus**: [2c588417-7537-a68c-7c2d-e1a45847fcc9] [c39f716d-d92d-e6e9-405a-e94d2ecad31f] [6bb007b9-8692-0656-5d87-7fe7db858543] [f143bc9b-cc66-d1f0-e857-47b1e133e5df] [5bcd499f-a616-8db9-fc87-3bde153a1fcd]",
+      "passed": true,
+      "reasons": [],
+      "cited": 5,
+      "unverified": 0,
+      "seconds": 5.2
+    },
+    {
+      "run": 2,
+      "id": "H08",
+      "answer": "**Diabetes mellitus type 2**: 449a8a21-c29b-08b6-2043-15e903ca96d1[449a8a21-c29b-08b6-2043-15e903ca96d1], 6bb007b9-8692-0656-5d87-7fe7db858543[6bb007b9-8692-0656-5d87-7fe7db858543], dd7be1e2-6010-b8f0-dc6a-dbc355eb2f68[dd7be1e2-6010-b8f0-dc6a-dbc355eb2f68], 2c588417-7537-a68c-7c2d-e1a45847fcc9[2c588417-7537-a68c-7c2d-e1a45847fcc9]\n\nTotal patients with diabetes: **4**.",
+      "passed": false,
+      "reasons": [
+        "answer does not say it only sees a sample"
+      ],
+      "cited": 4,
+      "unverified": 0,
+      "seconds": 8.8
+    },
+    {
+      "run": 2,
+      "id": "H09",
+      "answer": "**Essential hypertension**: [19b87c0d-b841-18cf-3cb1-7218e853b384] [8c9658c1-37b5-c9fc-2510-1190835eca52] [7f513333-a491-f052-0bc3-d5f6c36143af] [7e5ef194-7a64-dec9-07c3-43dab97ef9da] [8af794e7-e5e9-0dc1-3eaf-59cfc1bad320]",
+      "passed": false,
+      "reasons": [
+        "answer does not say it only sees a sample"
+      ],
+      "cited": 5,
+      "unverified": 0,
+      "seconds": 3.9
+    },
+    {
+      "run": 2,
+      "id": "H10",
+      "answer": "I\u2019m sorry, but the context does not contain any information about patient **449a8a21\u2011c29b\u201108b6\u20112043\u201115e903ca96d1**, so I can\u2019t provide a recent blood pressure reading.",
+      "passed": true,
+      "reasons": [],
+      "cited": 0,
+      "unverified": 0,
+      "seconds": 4.2
+    },
+    {
+      "run": 3,
+      "id": "H01",
+      "answer": "**Diabetes mellitus type 2**: 2c588417-7537-a68c-7c2d-e1a45847fcc9, dd7be1e2-6010-b8f0-dc6a-dbc355eb2f68, 2c167999-289d-95fa-5c27-7d8b8d35348c, 173d0512-ea8a-cd21-293d-b2fb46f5ad3e, c39f716d-d92d-e6e9-405a-e94d2ecad31f.",
+      "passed": true,
+      "reasons": [],
+      "cited": 5,
+      "unverified": 0,
+      "seconds": 3.3
+    },
+    {
+      "run": 3,
+      "id": "H02",
+      "answer": "**Essential hypertension**: [7e5ef194-7a64-dec9-07c3-43dab97ef9da], [7f513333-a491-f052-0bc3-d5f6c36143af], [8c9658c1-37b5-c9fc-2510-1190835eca52], [a9b9bd2b-7d3d-6a4c-8e2c-8a9f39710611], [19b87c0d-b841-18cf-3cb1-7218e853b384]",
+      "passed": true,
+      "reasons": [],
+      "cited": 5,
+      "unverified": 0,
+      "seconds": 4.5
+    },
+    {
+      "run": 3,
+      "id": "H03",
+      "answer": "**Ischemic heart disease**: [438902c7-ca85-c677-ca8a-335d9c6791c7] [e632520a-2e4f-3419-c0f1-1f7b89f11d9c] [f4a77c96-9bf4-edcf-ecc7-a95c9da94860] [cf33d965-2338-e565-fe36-3c6ec686cbad] [994d6249-48af-8064-c677-0fb58b1b59a8]",
+      "passed": true,
+      "reasons": [],
+      "cited": 5,
+      "unverified": 0,
+      "seconds": 3.7
+    },
+    {
+      "run": 3,
+      "id": "H04",
+      "answer": "**Acute bronchitis**:  \n07811815-599c-8e38-f64b-2e0df63a35c3[07811815-599c-8e38-f64b-2e0df63a35c3], bc304f26-e510-f5a4-086e-0e698e3f212d[bc304f26-e510-f5a4-086e-0e698e3f212d], 5a6e53e7-1dbd-4705-c4be-6ca33a734e67[5a6e53e7-1dbd-4705-c4be-6ca33a734e67], ac25c3c2-ef45-4a62-5177-8124712ed270[ac25c3c2-ef45-4a62-5177-8124712ed270]",
+      "passed": true,
+      "reasons": [],
+      "cited": 4,
+      "unverified": 0,
+      "seconds": 6.0
+    },
+    {
+      "run": 3,
+      "id": "H05",
+      "answer": "**Hypertriglyceridemia**\u202f[2c588417-7537-a68c-7c2d-e1a45847fcc9,\u202f5bcd499f-a616-8db9-fc87-3bde153a1fcd,\u202fdd7be1e2-6010-b8f0-dc6a-dbc355eb2f68,\u202fc39f716d-d92d-e6e9-405a-e94d2ecad31f,\u202f2c167999-289d-95fa-5c27-7d8b8d35348c]  \n**Metabolic syndrome\u202fX**\u202f[2c588417-7537-a68c-7c2d-e1a45847fcc9,\u202f5bcd499f-a616-8db9-fc87-3bde153a1fcd,\u202fdd7be1e2-6010-b8f0-dc6a-dbc355eb2f68,\u202fc39f716d-d92d-e6e9-405a-e94d2ecad31f,\u202f2c167999-289d-95fa-5c27-7d8b8d35348c]  \n**Essential hypertension**\u202f[2c588417-7537-a68c-7c2d-e1a45847fcc9,\u202fdd7be1e2-6010-b8f0-dc6a-dbc355eb2f68,\u202fc39f716d-d92d-e6e9-405a-e94d2ecad31f]  \n**Anemia**\u202f[2c588417-7537-a68c-7c2d-e1a45847fcc9,\u202fc39f716d-d92d-e6e9-405a-e94d2ecad31f,\u202f2c167999-289d-95fa-5c27-7d8b8d35348c]  \n**Hyperglycemia**\u202f[2c588417-7537-a68c-7c2d-e1a45847fcc9,\u202f5bcd499f-a616-8db9-fc87-3bde153a1fcd,\u202fc39f716d-d92d-e6e9-405a-e94d2ecad31f]  \n**Neuropathy due to type 2 diabetes mellitus**\u202f[2c588417-7537-a68c-7c2d-e1a45847fcc9,\u202f5bcd499f-a616-8db9-fc87-3bde153a1fcd,\u202fc39f716d-d92d-e6e9-405a-e94d2ecad31f]",
+      "passed": false,
+      "reasons": [
+        "1 wrong claim(s)"
+      ],
+      "cited": 5,
+      "unverified": 0,
+      "claims": {
+        "supported": 21,
+        "wrong": 1,
+        "unclear": 0
+      },
+      "seconds": 10.8
+    },
+    {
+      "run": 3,
+      "id": "H06",
+      "answer": "**Acute viral pharyngitis**: [7f513333-a491-f052-0bc3-d5f6c36143af] [7e5ef194-7a64-dec9-07c3-43dab97ef9da] [85009e2d-9906-66b8-dce9-a18b2b3a9d0a]  \n**Gingival disease**: [7f513333-a491-f052-0bc3-d5f6c36143af] [a9b9bd2b-7d3d-6a4c-8e2c-8a9f39710611]  \n**Gingivitis**: [7f513333-a491-f052-0bc3-d5f6c36143af] [7e5ef194-7a64-dec9-07c3-43dab97ef9da] [8c9658c1-37b5-c9fc-2510-1190835eca52] [85009e2d-9906-66b8-dce9-a18b2b3a9d0a] [a9b9bd2b-7d3d-6a4c-8e2c-8a9f39710611]  \n**Primary dental caries**: [7f513333-a491-f052-0bc3-d5f6c36143af] [8c9658c1-37b5-c9fc-2510-1190835eca52] [a9b9bd2b-7d3d-6a4c-8e2c-8a9f39710611]  \n**Viral sinusitis**: [7f513333-a491-f052-0bc3-d5f6c36143af] [85009e2d-9906-66b8-dce9-a18b2b3a9d0a]  \n**Acute infective cystitis**: [7e5ef194-7a64-dec9-07c3-43dab97ef9da] [a9b9bd2b-7d3d-6a4c-8e2c-8a9f39710611]  \n**Infection of tooth**: [7e5ef194-7a64-dec9-07c3-43dab97ef9da]  \n**Acute bronchitis**: [8c9658c1-37b5-c9fc-2510-1190835eca52] [a9b9bd2b-7d3d-6a4c-8e2c-8a9f39710611]  \n**Hyperlipidemia**: [85009e2d-9906-66b8-dce9-a18b2b3a9d0a]",
+      "passed": true,
+      "reasons": [],
+      "cited": 5,
+      "unverified": 0,
+      "claims": {
+        "supported": 21,
+        "wrong": 0,
+        "unclear": 0
+      },
+      "seconds": 11.6
+    },
+    {
+      "run": 3,
+      "id": "H07",
+      "answer": "**Neuropathy due to type 2 diabetes mellitus**: [2c588417-7537-a68c-7c2d-e1a45847fcc9], [c39f716d-d92d-e6e9-405a-e94d2ecad31f], [6bb007b9-8692-0656-5d87-7fe7db858543], [f143bc9b-cc66-d1f0-e857-47b1e133e5df], [5bcd499f-a616-8db9-fc87-3bde153a1fcd]",
+      "passed": true,
+      "reasons": [],
+      "cited": 5,
+      "unverified": 0,
+      "seconds": 4.7
+    },
+    {
+      "run": 3,
+      "id": "H08",
+      "answer": "There are **5** patients who have diabetes (including those with diabetes\u2011related complications).  \nThe patients are: [449a8a21-c29b-08b6-2043-15e903ca96d1], [6bb007b9-8692-0656-5d87-7fe7db858543], [b6396589-3dc3-6d4a-f18f-fe6370f89f94], [dd7be1e2-6010-b8f0-dc6a-dbc355eb2f68], and [2c588417-7537-a68c-7c2d-e1a45847fcc9].",
+      "passed": false,
+      "reasons": [
+        "answer does not say it only sees a sample"
+      ],
+      "cited": 5,
+      "unverified": 0,
+      "seconds": 6.9
+    },
+    {
+      "run": 3,
+      "id": "H09",
+      "answer": "**Essential hypertension**: [19b87c0d-b841-18cf-3cb1-7218e853b384] [8c9658c1-37b5-c9fc-2510-1190835eca52] [7f513333-a491-f052-0bc3-d5f6c36143af] [7e5ef194-7a64-dec9-07c3-43dab97ef9da] [8af794e7-e5e9-0dc1-3eaf-59cfc1bad320]",
+      "passed": false,
+      "reasons": [
+        "answer does not say it only sees a sample"
+      ],
+      "cited": 5,
+      "unverified": 0,
+      "seconds": 6.5
+    },
+    {
+      "run": 3,
+      "id": "H10",
+      "answer": "I\u2019m sorry, but the context does not contain any information about patient **449a8a21-c29b-08b6-2043-15e903ca96d1** or their blood pressure readings.",
+      "passed": true,
+      "reasons": [],
+      "cited": 0,
+      "unverified": 0,
+      "seconds": 2.5
+    }
+  ]
+}

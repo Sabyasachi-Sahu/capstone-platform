@@ -11,3 +11,6 @@ __pycache__/
 # Phase 2 generated artifacts (rebuilt by scripts)
 data/processed/
 data/vectordb/
+# Phase 3 generated artifacts (rebuilt by scripts)
+data/dictionary/
+tests/scores/

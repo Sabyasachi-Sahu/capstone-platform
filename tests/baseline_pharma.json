@@ -1,0 +1,329 @@
+{
+  "pack": "pharma",
+  "timestamp": "20261027_215203",
+  "runs": 3,
+  "questions": 10,
+  "run_scores": [
+    1.0,
+    0.9,
+    1.0
+  ],
+  "mean": 0.9666666666666667,
+  "spread": 0.04714045207910316,
+  "per_question": {
+    "P01": 3,
+    "P02": 3,
+    "P03": 3,
+    "P04": 3,
+    "P05": 3,
+    "P06": 3,
+    "P07": 3,
+    "P08": 3,
+    "P09": 3,
+    "P10": 2
+  },
+  "details": [
+    {
+      "run": 1,
+      "id": "P01",
+      "answer": "The boxed warning for Metformin (metformin hydrochloride extended\u2011release tablets) states that the drug can cause **lactic acidosis**\u2014a potentially fatal metabolic disturbance.  It describes:\n\n* The **symptoms** of lactic acidosis (malaise, myalgias, respiratory distress, somnolence, abdominal pain) and laboratory findings (\u2191blood lactate >5\u202fmmol/L, anion\u2011gap acidosis, \u2191lactate/pyruvate ratio, metformin plasma levels \u22735\u202fmcg/mL)\u202f[metformin.boxed_warning.01].\n\n* **Risk factors** for developing lactic acidosis, including renal impairment, use of certain drugs (e.g., topiramate), age >65\u202fyears, contrast\u2011enhanced radiologic studies, surgery or procedures, hypoxic states (e.g., acute congestive heart failure), excessive alcohol intake, and hepatic impairment\u202f[metformin.boxed_warning.01].\n\n* The need for rapid recognition and management: if lactic acidosis is suspected, **discontinue metformin immediately** and give **general supportive measures in a hospital setting**. Prompt hemodialysis is recommended\u202f[metformin.boxed_warning.02].",
+      "passed": true,
+      "reasons": [],
+      "cited": 2,
+      "unverified": 0,
+      "seconds": 5.9
+    },
+    {
+      "run": 1,
+      "id": "P02",
+      "answer": "The boxed warning states that warfarin sodium can cause **major or fatal bleeding**\u3010warfarin.boxed_warning.01\u3011.",
+      "passed": true,
+      "reasons": [],
+      "cited": 1,
+      "unverified": 0,
+      "seconds": 2.1
+    },
+    {
+      "run": 1,
+      "id": "P03",
+      "answer": "- The label states that lisinopril can cause fetal harm when given during pregnancy, especially in the second and third trimesters, leading to reduced fetal renal function, oligohydramnios, lung hypoplasia, skeletal deformities, and potential neonatal effects such as skull hypoplasia, anuria, hypotension, renal failure, and death\u00a0[lisinopril.warnings_and_cautions.01].  \n- If pregnancy is detected, the drug must be discontinued \u201cas soon as possible\u201d\u00a0[lisinopril.warnings_and_cautions.01].  \n- The boxed warning emphasizes that drugs acting on the renin\u2011angiotensin system (including lisinopril) can cause injury and death to the developing fetus, again recommending immediate discontinuation upon pregnancy detection\u00a0[lisinopril.boxed_warning.01].",
+      "passed": true,
+      "reasons": [],
+      "cited": 2,
+      "unverified": 0,
+      "seconds": 9.4
+    },
+    {
+      "run": 1,
+      "id": "P04",
+      "answer": "Atorvastatin calcium is contraindicated if the patient has **acute liver failure or decompensated cirrhosis** and if the patient is **hypersensitive to atorvastatin or any of its excipients**.  \n[atorvastatin.contraindications.01]",
+      "passed": true,
+      "reasons": [],
+      "cited": 1,
+      "unverified": 0,
+      "seconds": 3.3
+    },
+    {
+      "run": 1,
+      "id": "P05",
+      "answer": "**Cardiovascular risks**  \n- Ibuprofen increases the risk of serious cardiovascular thrombotic events, including myocardial infarction (MI) and stroke; the risk can begin early in treatment and may grow with longer use. [ibuprofen.boxed_warning.01]  \n- The risk is similar for all NSAIDs, but patients with known CV disease or risk factors have a higher absolute incidence of excess events. [ibuprofen.warnings.01]  \n- Ibuprofen is contraindicated in the setting of coronary artery bypass graft (CABG) surgery because of an elevated incidence of MI and stroke. [ibuprofen.boxed_warning.01][ibuprofen.warnings.02]  \n- Use of ibuprofen may worsen heart failure, lead to fluid retention and edema, and may blunt the effects of heart\u2011failure therapies such as diuretics, ACE\u2011inhibitors, or ARBs. [ibuprofen.warnings.05][ibuprofen.warnings.04]  \n- NSAIDs can precipitate new hypertension or worsen pre\u2011existing hypertension, which can contribute to CV events, and patients on diuretics may have impaired response. [ibuprofen.warnings.04]  \n\n**Gastrointestinal risks**  \n- Ibuprofen can cause serious GI adverse events\u2014including inflammation, bleeding, ulceration, and perforation of the stomach, small intestine, or large intestine\u2014which can be fatal. These events can occur at any time, with or without warning symptoms. [ibuprofen.warnings.05][ibuprofen.boxed_warning.01]  \n- Upper\u2011GI ulcers, gross bleeding, or perforation occur in approximately 1\u202f% of patients treated for 3\u20136\u202fmonths and 2\u20134\u202f% for one",
+      "passed": true,
+      "reasons": [],
+      "cited": 6,
+      "unverified": 0,
+      "seconds": 15.2
+    },
+    {
+      "run": 1,
+      "id": "P06",
+      "answer": "Acetaminophen can cause severe liver damage if taken in excess\u2014adult doses over 4,000\u202fmg (or more than the product\u2019s recommended 10 tablets in 24\u202fh) and child doses above the maximum can lead to liver injury. Also, regular consumption of 3 or more alcoholic drinks daily while using acetaminophen increases the risk of liver damage. [acetaminophen.warnings.01]",
+      "passed": true,
+      "reasons": [],
+      "cited": 1,
+      "unverified": 0,
+      "seconds": 2.6
+    },
+    {
+      "run": 1,
+      "id": "P07",
+      "answer": "**Drugs that interact with simvastatin (per the supplied label excerpts)**  \n\n- **Strong CYP\u20113A4 inhibitors**  \n  - itraconazole, ketoconazole, posaconazole, voriconazole  \n  - erythromycin, clarithromycin  \n  - HIV protease inhibitors: nelfinavir, ritonavir, darunavir/ritonavir  \n  - HCV protease inhibitors: boceprevir, telaprevir  \n  - cobicistat\u2011containing products  \n  - nefazodone  \n  \u2013 *Source:* [simvastatin.drug_interactions.02]  \n\n- **Other drugs that increase the risk of myopathy/rhabdomyolysis when taken with simvastatin**  \n  - cyclosporine, danazol, gemfibrozil  \n  - amiodarone, dronedarone, ranolazine  \n  - calcium\u2011channel blockers: verapamil, diltiazem, amlodipine  \n  - lomitapide  \n  \u2013 *Source:* [simvastatin.drug_interactions.03]  \n\n- **Gastro\u2011intestinal food interaction**  \n  - grapefruit juice (raises simvastatin levels)  \n  \u2013 *Source:* [simvastatin.drug_interactions.06]  \n\n- **Anticoagulant interaction**  \n  - coumarin anticoagulants (e.g., warfarin) \u2013 simvastatin may potentiate their effect and increase INR  \n  \u2013 *Source:* [simvastatin.drug_interactions.06]  \n\n- **Other lipid\u2011modifying drugs**  \n  - fibrates (other than gemfibrozil)  \n  - niacin (lipid\u2011modifying doses)  \n  \u2013 *Source:* [simvastatin.drug_interactions.05]  \n\n- **Colchicine** \u2013 myopathy/rhabdomyolysis possible when combined with simvastatin  \n  \u2013 *Source:* [simvastatin.drug_interactions.05]  \n\n- **Amlodipine interaction** \u2013 when taken together, simvastatin exposure increases and the maximum safe",
+      "passed": true,
+      "reasons": [],
+      "cited": 5,
+      "unverified": 0,
+      "seconds": 12.8
+    },
+    {
+      "run": 1,
+      "id": "P08",
+      "answer": "Hydrochlorothiazide is indicated for the treatment of hypertension to lower blood pressure.\u00a0[hydrochlorothiazide.indications_and_usage.01]",
+      "passed": true,
+      "reasons": [],
+      "cited": 1,
+      "unverified": 0,
+      "seconds": 6.5
+    },
+    {
+      "run": 1,
+      "id": "P09",
+      "answer": "Amoxicillin is indicated for the treatment of infections caused by \u03b2\u2011lactamase\u2011negative susceptible strains of the following organisms:\n\n| Infection type | Site/condition | Note on organisms |\n|----------------|----------------|-------------------|\n| **Upper\u2011respiratory\u2011tract infections** (ear, nose, throat) | \u2014 | Streptococcus spp. (\u03b1\u2011 and \u03b2\u2011hemolytic), Staphylococcus spp., Haemophilus influenzae\u202f[amoxicillin.indications_and_usage.01] |\n| **Genitourinary\u2011tract infections** | \u2014 | Escherichia coli, Proteus mirabilis, Enterococcus faecalis\u202f[amoxicillin.indications_and_usage.01] |\n| **Skin and skin\u2011structure infections** | \u2014 | Streptococcus spp. (\u03b1\u2011 and \u03b2\u2011hemolytic), Staphylococcus spp.,\u202fE. coli\u202f[amoxicillin.indications_and_usage.01] |\n| **Lower\u2011respiratory\u2011tract infections** | \u2014 | Streptococcus spp. (\u03b1\u2011 and \u03b2\u2011hemolytic), Streptococcus pneumoniae, Staphylococcus spp., Haemophilus influenzae\u202f[amoxicillin.indications_and_usage.01] |\n| **Helicobacter pylori infection with duodenal ulcer disease** (adult patients only) | \u2014 | Treated with amoxicillin as part of dual (lansoprazole\u202f+\u202famoxicillin) or triple (clarithromycin\u202f+\u202flansoprazole\u202f+\u202famoxicillin) therapy\u202f[amoxicillin.indications_and_usage.02] |\n\nThese indications are limited to infections caused by susceptible, \u03b2\u2011lactamase\u2011negative strains of the listed organisms.",
+      "passed": true,
+      "reasons": [],
+      "cited": 2,
+      "unverified": 0,
+      "seconds": 8.3
+    },
+    {
+      "run": 1,
+      "id": "P10",
+      "answer": "The provided label excerpts do not contain any information about the retail price of metformin.",
+      "passed": true,
+      "reasons": [],
+      "cited": 0,
+      "unverified": 0,
+      "seconds": 2.9
+    },
+    {
+      "run": 2,
+      "id": "P01",
+      "answer": "**Boxed warning for metformin**\n\nThe warning states that metformin\u2011associated lactic acidosis is a serious, potentially fatal condition, and outlines its clinical presentation, laboratory abnormalities, risk factors, and recommended management.  \n* Lactic acidosis symptoms are typically nonspecific\u2014malaise, myalgias, respiratory distress, somnolence, and abdominal pain\u2014and can result in death, hypothermia, hypotension, and refractory bradyarrhythmias. [metformin.boxed_warning.01]  \n* Laboratory findings include an elevated blood lactate level (>5\u202fmmol/L), anion\u2011gap acidosis (without ketonuria or ketonemia), an increased lactate/pyruvate ratio, and metformin plasma concentrations generally >5\u202f\u00b5g/mL. [metformin.boxed_warning.01]  \n* Key risk factors are renal impairment, use of certain drugs (e.g., carbonic\u2011anhydrase inhibitors such as topiramate), age \u226565\u202fyears, radiologic studies with contrast, surgery or other procedures, hypoxic states (e.g., acute congestive heart failure), excessive alcohol intake, and hepatic impairment. [metformin.boxed_warning.01]  \n* If lactic acidosis is suspected, discontinue metformin immediately, provide general supportive care in a hospital setting, and consider prompt hemodialysis. [metformin.boxed_warning.02]  \n\nThese are the contents of the boxed warning for metformin.",
+      "passed": true,
+      "reasons": [],
+      "cited": 2,
+      "unverified": 0,
+      "seconds": 9.5
+    },
+    {
+      "run": 2,
+      "id": "P02",
+      "answer": "The boxed warning states that warfarin sodium can cause **major or fatal bleeding**. [warfarin.boxed_warning.01]",
+      "passed": true,
+      "reasons": [],
+      "cited": 1,
+      "unverified": 0,
+      "seconds": 3.2
+    },
+    {
+      "run": 2,
+      "id": "P03",
+      "answer": "The lisinopril label states that the drug can cause fetal harm. It notes that use during the second and third trimesters can reduce fetal renal function and increase fetal/neonatal morbidity and death. It also describes potential neonatal adverse effects such as skull hypoplasia, anuria, hypotension, renal failure, and death. When pregnancy is detected, the label instructs that lisinopril should be discontinued as soon as possible. The boxed warning reiterates that drugs acting on the renin\u2011angiotensin system can cause injury and death to the developing fetus. [lisinopril.warnings_and_cautions.01] [lisinopril.boxed_warning.01]",
+      "passed": true,
+      "reasons": [],
+      "cited": 2,
+      "unverified": 0,
+      "seconds": 8.1
+    },
+    {
+      "run": 2,
+      "id": "P04",
+      "answer": "Atorvastatin calcium is contraindicated in patients who have:\n\n* acute liver failure or decompensated cirrhosis\u202f[atorvastatin.contraindications.01]  \n* a hypersensitivity to atorvastatin itself or to any of its excipients\u202f[atorvastatin.contraindications.01]",
+      "passed": true,
+      "reasons": [],
+      "cited": 1,
+      "unverified": 0,
+      "seconds": 6.4
+    },
+    {
+      "run": 2,
+      "id": "P05",
+      "answer": "**Cardiovascular risks warned about**\n\n| Risk | Label excerpt |\n|------|---------------|\n| Increased risk of serious cardiovascular thrombotic events (myocardial infarction and stroke) | [ibuprofen.boxed_warning.01], [ibuprofen.warnings.01] |\n| The thrombotic risk is highest at higher drug doses and can appear early in treatment | [ibuprofen.warnings.01] |\n| Increased risk of heart\u2011failure\u2013related events (hospitalization for heart failure, fluid retention, edema) and death | [ibuprofen.warnings.05], [ibuprofen.warnings.04] |\n| Worsening of pre\u2011existing hypertension or new hypertension, which can raise the risk of CV events | [ibuprofen.warnings.04] |\n| Impaired response to antihypertensive agents such as thiazides, loop diuretics, ACE inhibitors or ARBs, and potential blunting of their CV benefits | [ibuprofen.warnings.05] |\n| Contraindication in patients undergoing coronary\u2011artery\u2011bypass\u2011graft (CABG) surgery | [ibuprofen.boxed_warning.01], [ibuprofen.warnings.02] |\n| Need for close monitoring after recent myocardial infarction or when used with aspirin (aspirin does **not** mitigate the CV risk and actually increases GI risk) | [ibuprofen.warnings.02], [ibuprofen.warnings.05] |\n\n**Gastrointestinal (GI) risks warned about**\n\n| Risk | Label excerpt |\n|------|---------------|\n| Serious GI adverse events\u2014bleeding, ulceration, and perforation of the stomach, small intestine, or large intestine\u2014can be fatal | [ibuprofen.boxed_warning.01], [ibuprofen.warnings.05] |\n| These events c",
+      "passed": true,
+      "reasons": [],
+      "cited": 6,
+      "unverified": 0,
+      "seconds": 20.2
+    },
+    {
+      "run": 2,
+      "id": "P06",
+      "answer": "Acetaminophen carries a risk of severe liver damage.  If an adult consumes more than 4,000\u202fmg in 24\u202fhours (or takes more than 10 tablets in that period) or a child takes more than 5 doses in 24\u202fhours, severe liver damage may occur.  [acetaminophen.warnings.01]",
+      "passed": true,
+      "reasons": [],
+      "cited": 1,
+      "unverified": 0,
+      "seconds": 4.9
+    },
+    {
+      "run": 2,
+      "id": "P07",
+      "answer": "Simvastatin has documented interactions with a wide range of drugs and substances, including:\n\n- **Coumarin anticoagulants** \u2013 e.g., warfarin [simvastatin.drug_interactions.01], [simvastatin.drug_interactions.06]  \n- **Digoxin** [simvastatin.drug_interactions.01]  \n- **Strong CYP3A4 inhibitors**:  \n  - Itraconazole, ketoconazole, posaconazole, voriconazole [simvastatin.drug_interactions.02]  \n- **Macrolide antibiotics**: erythromycin, clarithromycin [simvastatin.drug_interactions.02]  \n- **HIV protease inhibitors**: nelfinavir, ritonavir, darunavir/ritonavir [simvastatin.drug_interactions.02]  \n- **HCV protease inhibitors**: boceprevir, telaprevir [simvastatin.drug_interactions.02]  \n- **Cobicistat\u2011containing products** [simvastatin.drug_interactions.02]  \n- **Nefazodone** [simvastatin.drug_interactions.02]  \n- **Cyclosporine** [simvastatin.drug_interactions.02], [simvastatin.drug_interactions.03]  \n- **Danazol** [simvastatin.drug_interactions.02]  \n- **Gemfibrozil** [simvastatin.drug_interactions.02]  \n- **Amiodarone** [simvastatin.drug_interactions.03]  \n- **Dronedarone** [simvastatin.drug_interactions.03]  \n- **Ranolazine** [simvastatin.drug_interactions.03]  \n- **Calcium\u2011channel blockers**: verapamil, diltiazem, amlodipine [simvastatin.drug_interactions.03], [amlodipine.drug_interactions.01]  \n- **Lomitapide** [simvastatin.drug_interactions.03]  \n- **Colchicine** [simvastatin.drug_interactions.06], [simvastatin.drug_interactions.05]  \n- **Grapefruit juice** [simvastatin.d",
+      "passed": true,
+      "reasons": [],
+      "cited": 6,
+      "unverified": 0,
+      "seconds": 16.0
+    },
+    {
+      "run": 2,
+      "id": "P08",
+      "answer": "Hydrochlorothiazide is used to treat hypertension in order to lower blood pressure\u3010hydrochlorothiazide.indications_and_usage.01\u3011\u3010hydrochlorothiazide.indications_and_usage.03\u3011.",
+      "passed": true,
+      "reasons": [],
+      "cited": 2,
+      "unverified": 0,
+      "seconds": 9.2
+    },
+    {
+      "run": 2,
+      "id": "P09",
+      "answer": "Amoxicillin is indicated for the treatment of infections caused by susceptible (\u03b2\u2011lactamase\u2011negative) isolates of certain bacteria, including:\n\n* Upper\u2011respiratory\u2011tract infections of the ear, nose, and throat [[amoxicillin.indications_and_usage.01]]  \n* Genitourinary\u2011tract infections [[amoxicillin.indications_and_usage.01]]  \n* Skin and skin\u2011structure infections [[amoxicillin.indications_and_usage.01]]  \n* Lower\u2011respiratory\u2011tract infections [[amoxicillin.indications_and_usage.01]]  \n* Helicobacter\u202fpylori infection with duodenal ulcer disease (adults only), used as part of triple or dual therapy [[amoxicillin.indications_and_usage.02]]  \n\nThese indications apply to infections due to susceptible \u03b2\u2011lactamase\u2011negative isolates of Streptococcus species (\u03b1\u2011 and \u03b2\u2011hemolytic), Staphylococcus species, Haemophilus influenzae, Escherichia coli, Proteus mirabilis, and Enterococcus faecalis.",
+      "passed": true,
+      "reasons": [],
+      "cited": 2,
+      "unverified": 0,
+      "seconds": 9.3
+    },
+    {
+      "run": 2,
+      "id": "P10",
+      "answer": "I\u2019m sorry, but none of the provided label excerpts contain information about the retail price of metformin.",
+      "passed": false,
+      "reasons": [
+        "answer does not say the information is missing"
+      ],
+      "cited": 0,
+      "unverified": 0,
+      "seconds": 2.2
+    },
+    {
+      "run": 3,
+      "id": "P01",
+      "answer": "**Boxed Warning (Metformin)**  \nMetformin carries a boxed warning for *metformin\u2011associated lactic acidosis*. Post\u2011marketing reports have shown that this serious adverse event can result in death, hypothermia, hypotension, and resistant bradyarrhythmias. Symptoms are often nonspecific and can include malaise, myalgias, respiratory distress, somnolence, and abdominal pain. Laboratory findings characteristic of this condition include elevated blood lactate levels (>5\u202fmmol/L), anion\u2011gap acidosis (without ketonuria or ketonemia), an increased lactate\u2011to\u2011pyruvate ratio, and metformin plasma concentrations generally >5\u202f\u00b5g/mL [metformin.boxed_warning.01].  \n\n**Risk factors**: renal impairment, concomitant use of certain drugs (e.g., carbonic\u2011anhydrase inhibitors such as topiramate), age \u226565\u202fyears, use of radiologic contrast agents, surgery or other procedures, hypoxic states (e.g., acute congestive heart failure), excessive alcohol intake, and hepatic impairment [metformin.boxed_warning.01].  \n\n**Management**: If lactic acidosis is suspected, promptly discontinue metformin hydrochloride extended\u2011release tablets and institute general supportive measures in a hospital setting; prompt hemodialysis is recommended [metformin.boxed_warning.02, metformin.boxed_warning.03].",
+      "passed": true,
+      "reasons": [],
+      "cited": 3,
+      "unverified": 0,
+      "seconds": 8.3
+    },
+    {
+      "run": 3,
+      "id": "P02",
+      "answer": "The boxed warning states that warfarin sodium can cause **major or fatal bleeding**\u3010warfarin.boxed_warning.01\u3011.",
+      "passed": true,
+      "reasons": [],
+      "cited": 1,
+      "unverified": 0,
+      "seconds": 4.1
+    },
+    {
+      "run": 3,
+      "id": "P03",
+      "answer": "The lisinopril label states that the drug is fetotoxic.  \n- Lisinopril can cause fetal harm when given to a pregnant woman, including fetal renal dysfunction, oligohydramnios, and increased neonatal morbidity and mortality [lisinopril.warnings_and_cautions.01].  \n- When pregnancy is detected, lisinopril must be discontinued as soon as possible [lisinopril.warnings_and_cautions.01, lisinopril.boxed_warning.01].  \n- Drugs that act directly on the renin\u2011angiotensin system can cause injury and death to the developing fetus and are contraindicated in pregnancy [lisinopril.boxed_warning.01].",
+      "passed": true,
+      "reasons": [],
+      "cited": 2,
+      "unverified": 0,
+      "seconds": 5.7
+    },
+    {
+      "run": 3,
+      "id": "P04",
+      "answer": "Atorvastatin calcium is contraindicated in patients with:\n\n1. **Acute liver failure or decompensated cirrhosis** \u2013 the drug can precipitate or worsen hepatic injury in these conditions.  \n2. **Hypersensitivity to atorvastatin or any of its excipients** \u2013 hypersensitivity reactions (e.g., anaphylaxis, angioedema, Stevens\u2011Johnson syndrome, toxic epidermal necrolysis) have been reported.\n\nThese contraindications are listed in the atorvastatin label under the \u201cContraindications\u201d section and are referenced in the warnings and cautions section.  \n\n[atorvastatin.contraindications.01] [atorvastatin.warnings_and_cautions.06]",
+      "passed": true,
+      "reasons": [],
+      "cited": 2,
+      "unverified": 0,
+      "seconds": 6.5
+    },
+    {
+      "run": 3,
+      "id": "P05",
+      "answer": "**Cardiovascular risks warned in the ibuprofen label**\n\n- An increased risk of serious cardiovascular thrombotic events, including myocardial infarction (MI) and stroke, with risk that may begin early in treatment and rise with higher doses or longer use.  \n  [ibuprofen.boxed_warning.01]  \n  [ibuprofen.warnings.01]  \n\n- Ibuprofen tablets are contraindicated in the setting of coronary artery bypass graft (CABG) surgery due to an increased incidence of MI and stroke.  \n  [ibuprofen.boxed_warning.01]  \n  [ibuprofen.warnings.02]  \n\n- Use may worsen heart\u2011failure symptoms, can increase hospitalizations for heart failure, and may blunt the cardiovascular effects of agents such as diuretics, ACE inhibitors, or ARBs.  \n  [ibuprofen.warnings.05]  \n  [ibuprofen.warnings.04]  \n\n- NSAIDs, including ibuprofen, can cause new or worsening hypertension, which may contribute to CV events; blood pressure should be monitored closely.  \n  [ibuprofen.warnings.04]  \n\n**Gastrointestinal risks warned in the ibuprofen label**\n\n- An increased risk of serious gastrointestinal adverse events such as bleeding, ulceration, and perforation of the stomach, small intestine, or large intestine, which can be fatal and may occur at any time without warning symptoms.  \n  [ibuprofen.boxed_warning.01]  \n  [ibuprofen.warnings.05]  \n  [ibuprofen.warnings.06]  \n\n- The risk is higher in elderly patients and in patients with a prior history of ulcer disease or gastrointestinal bleeding (greater than 10\u2011fold increased r",
+      "passed": true,
+      "reasons": [],
+      "cited": 6,
+      "unverified": 0,
+      "seconds": 9.8
+    },
+    {
+      "run": 3,
+      "id": "P06",
+      "answer": "Acetaminophen can cause **severe liver damage** if an adult takes more than 4,000\u202fmg in 24\u202fhours (or more than 5 doses in 24\u202fhours in a child) while using the product. [acetaminophen.warnings.01]",
+      "passed": true,
+      "reasons": [],
+      "cited": 1,
+      "unverified": 0,
+      "seconds": 2.9
+    },
+    {
+      "run": 3,
+      "id": "P07",
+      "answer": "**Drugs that interact with simvastatin**  \n\n- **Strong CYP3A4 inhibitors** (\u2191 simvastatin exposure and risk of myopathy/rhabdomyolysis):  \n  - Azole antifungals \u2013 itraconazole, ketoconazole, posaconazole, voriconazole\u3010simvastatin.drug_interactions.02\u3011  \n  - Macrolide antibiotics \u2013 erythromycin, clarithromycin\u3010simvastatin.drug_interactions.02\u3011  \n  - HIV protease inhibitors \u2013 nelfinavir, ritonavir, darunavir/ritonavir\u3010simvastatin.drug_interactions.02\u3011  \n  - Hepatitis\u2011C protease inhibitors \u2013 boceprevir, telaprevir\u3010simvastatin.drug_interactions.02\u3011  \n  - Cobicistat\u2011containing products; nefazodone\u3010simvastatin.drug_interactions.02\u3011\n\n- **Cyclosporine, danazol, or gemfibrozil** \u2013 contraindicated; also increase risk of myopathy/rhabdomyolysis\u3010simvastatin.drug_interactions.02\u3011\u3010simvastatin.drug_interactions.03\u3011\n\n- **Amiodarone, dronedarone, ranolazine, or calcium\u2011channel blockers** (verapamil, diltiazem, amlodipine) \u2013 increase risk; dose limits:\u202f\u2264\u202f10\u202fmg daily (verapamil/diltiazem/dronedarone) or \u2264\u202f20\u202fmg daily (amiodarone/amlodipine/ranolazine)\u3010simvastatin.drug_interactions.03\u3011\n\n- **Lomitapide** \u2013 doubles simvastatin exposure; limit to \u2264\u202f20\u202fmg daily (or \u2264\u202f40\u202fmg daily if \u2265\u202f80\u202fmg/d was previously used)\u3010simvastatin.drug_interactions.03\u3011\n\n- **Colchicine** \u2013 associated cases of myopathy/rhabdomyolysis when used with simvastatin\u3010simvastatin.drug_interactions.05\u3011\u3010simvastatin.drug_interactions.06\u3011\n\n- **Grapefruit juice** \u2013 raises simvastatin plasma levels; should be avoided\u3010simvastatin.drug_inte",
+      "passed": true,
+      "reasons": [],
+      "cited": 4,
+      "unverified": 0,
+      "seconds": 11.3
+    },
+    {
+      "run": 3,
+      "id": "P08",
+      "answer": "Hydrochlorothiazide is indicated for the treatment of hypertension to lower blood pressure. [hydrochlorothiazide.indications_and_usage.01]",
+      "passed": true,
+      "reasons": [],
+      "cited": 1,
+      "unverified": 0,
+      "seconds": 3.7
+    },
+    {
+      "run": 3,
+      "id": "P09",
+      "answer": "Amoxicillin is indicated for the treatment of infections caused by susceptible (\u03b2\u2011lactamase\u2011negative) isolates of the following organisms in the specified clinical settings:\n\n* **Upper\u2011respiratory tract infections** of the ear, nose, and throat \u2013 infections due to susceptible *Streptococcus* spp. (\u03b1\u2011 and \u03b2\u2011hemolytic only), *Streptococcus pneumoniae*, *Staphylococcus* spp., or *Haemophilus influenzae*\u3010amoxicillin.indications_and_usage.01\u3011  \n* **Genitourinary\u2011tract infections** \u2013 infections due to susceptible *Escherichia coli*, *Proteus mirabilis*, or *Enterococcus faecalis*\u3010amoxicillin.indications_and_usage.01\u3011  \n* **Skin and skin\u2011structure infections** \u2013 infections due to susceptible *Streptococcus* spp. (\u03b1\u2011 and \u03b2\u2011hemolytic only), *Staphylococcus* spp., or *E. coli*\u3010amoxicillin.indications_and_usage.01\u3011  \n* **Lower\u2011respiratory tract infections** \u2013 infections due to susceptible *Streptococcus* spp. (\u03b1\u2011 and \u03b2\u2011hemolytic only), *S. pneumoniae*, *Staphylococcus* spp., or *H. influenzae*\u3010amoxicillin.indications_and_usage.01\u3011  \n* **Helicobacter pylori infection with duodenal ulcer disease** \u2013 in adult patients only, as part of triple (amoxicillin\u202f+\u202fclarithromycin\u202f+\u202flansoprazole) or dual (amoxicillin\u202f+\u202flansoprazole) therapy\u3010amoxicillin.indications_and_usage.02\u3011",
+      "passed": true,
+      "reasons": [],
+      "cited": 2,
+      "unverified": 0,
+      "seconds": 7.3
+    },
+    {
+      "run": 3,
+      "id": "P10",
+      "answer": "The provided label excerpts do not contain information about the retail price of metformin.",
+      "passed": true,
+      "reasons": [],
+      "cited": 0,
+      "unverified": 0,
+      "seconds": 3.2
+    }
+  ]
+}
