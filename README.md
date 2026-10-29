@@ -9,8 +9,11 @@
   <img src="https://img.shields.io/badge/UI-Streamlit-FF4B4B?logo=streamlit&logoColor=white" alt="Streamlit">
   <img src="https://img.shields.io/badge/Lint-Ruff-D7FF64" alt="Ruff">
   <img src="https://img.shields.io/badge/Data-Synthetic%20only-0F2A47" alt="Synthetic data only">
-  <img src="https://img.shields.io/badge/Status-Phase%203%20complete-14B8A6" alt="Phase 3 complete">
+  <img src="https://img.shields.io/badge/Status-Phase%204%20complete-14B8A6" alt="Phase 4 complete">
 </p>
+
+
+> 🔎 **New: [LedgerLens](LEDGERLENS.md)**, governed text-to-SQL across four industries: one shared person ID, planted defects that are all caught, a four-layer SQL guard, and 0.95 execution accuracy.
 
 # Capstone Platform
 
@@ -68,7 +71,8 @@ test_file: tests/pharma_p3.yaml
 | 1 | VS Code workflow: debugging, notebooks on the project venv, Ruff linting and formatting | ✅ Done |
 | 2 | Local RAG on patient records: documents, ChromaDB index, retrieval, grounded answers, citation check, claim check | ✅ Done |
 | 3 | Pack configuration, scored test sets and baselines, openFDA drug-label pack, drug dictionary, Streamlit app | ✅ Done |
-| Next | Text-to-SQL for counts and complete lists, then production RAG, agents, evaluation and LLMOps | 🔜 Planned |
+| 4 | **LedgerLens**: hospital, pharma, banking and insurance data on one person ID; 50 planted defects all caught; Bronze/Silver/Gold in DuckDB and Databricks; guarded, audited text-to-SQL; 107 tests | ✅ Done |
+| Next | Investigation agents over the same tables | 🔜 Planned |
 
 ### Phase 3 highlights
 
