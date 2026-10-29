@@ -1,0 +1,89 @@
+# DataSteward (data governance) schema catalogue. Phase 4. These tables are
+# built by core/sql/lake.py from the other catalogues, the defect register and
+# the checks. They live only in the warehouse (no bronze or silver copy).
+pack: datasteward
+title: DataSteward (data governance)
+warehouse_only: true
+tables:
+  catalog_table:
+    about: One row per table or view in the warehouse, with its pack and row count.
+    primary_key: table_name
+    keywords: [table, tables, catalog, catalogue, pack, packs, rows, view, views]
+    columns:
+      table_name: {type: VARCHAR, required: true}
+      pack: {type: VARCHAR, required: true, hint: true}
+      kind: {type: VARCHAR, required: true, about: table or view, hint: true}
+      description: {type: VARCHAR}
+      primary_key: {type: VARCHAR}
+      row_count: {type: BIGINT}
+ 
+  catalog_column:
+    about: One row per column of every table and view.
+    keywords: [column, columns, field, fields, key, keys, foreign, required, type]
+    columns:
+      table_name: {type: VARCHAR, required: true, references: catalog_table.table_name}
+      column_name: {type: VARCHAR, required: true}
+      data_type: {type: VARCHAR, hint: true}
+      description: {type: VARCHAR}
+      is_primary_key: {type: BOOLEAN}
+      is_required: {type: BOOLEAN}
+      references_table: {type: VARCHAR, about: "Table a foreign key points to, or NULL"}
+ 
+  defect_register:
+    about: >-
+      One row per data defect planted on purpose in the bronze layer, with its
+      type. The ground truth for data-quality checks.
+    primary_key: defect_id
+    keywords: [defect, defects, planted, register, quality, duplicate, duplicates, orphan, orphans, "null", nulls, missing, out-of-range, invalid]
+    columns:
+      defect_id: {type: VARCHAR, required: true, about: "e.g. DEF0001"}
+      table_name: {type: VARCHAR, required: true, hint: true}
+      row_key: {type: VARCHAR, required: true, about: Primary key of the affected row}
+      column_name: {type: VARCHAR, required: true}
+      defect_type: {type: VARCHAR, required: true, about: "null, duplicate, orphan or date_out_of_range", hint: true}
+      detail: {type: VARCHAR}
+ 
+  dq_finding:
+    about: >-
+      One row per problem the data-quality checks found in the bronze layer,
+      linked to the planted defect it matches (NULL if unexpected).
+    primary_key: finding_id
+    keywords: [finding, findings, check, checks, detected, caught, found, quality, rule]
+    columns:
+      finding_id: {type: VARCHAR, required: true}
+      table_name: {type: VARCHAR, required: true, hint: true}
+      row_key: {type: VARCHAR, required: true}
+      column_name: {type: VARCHAR, required: true}
+      rule: {type: VARCHAR, required: true, about: The check that failed, hint: true}
+      defect_type: {type: VARCHAR, required: true, hint: true}
+      defect_id: {type: VARCHAR, references: defect_register.defect_id}
+ 
+  quarantine_summary:
+    about: Rows removed between bronze and silver, by table and reason.
+    keywords: [quarantine, quarantined, removed, rejected, silver, bronze, cleaned]
+    columns:
+      table_name: {type: VARCHAR, required: true, hint: true}
+      reason: {type: VARCHAR, required: true, hint: true}
+      rows_removed: {type: BIGINT, required: true}
+ 
+  lineage:
+    about: Table-level lineage. Which source table feeds each table or view in each layer.
+    keywords: [lineage, source, sources, feeds, derived, upstream, downstream, layer, layers, gold, silver, bronze]
+    columns:
+      target_layer: {type: VARCHAR, required: true, hint: true}
+      target_table: {type: VARCHAR, required: true}
+      source_layer: {type: VARCHAR, required: true, hint: true}
+      source_table: {type: VARCHAR, required: true}
+      transform: {type: VARCHAR}
+ 
+join_paths:
+  - catalog_column.table_name = catalog_table.table_name
+  - dq_finding.defect_id = defect_register.defect_id
+ 
+examples:
+  - question: How many columns are marked as required?
+    sql: SELECT COUNT(*) AS columns FROM catalog_column WHERE is_required
+  - question: Which layer feeds the silver encounter table?
+    sql: >-
+      SELECT source_layer, source_table FROM lineage
+      WHERE target_layer = 'silver' AND target_table = 'encounter'

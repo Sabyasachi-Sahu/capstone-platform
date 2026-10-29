@@ -1,0 +1,90 @@
+# CareBridge (hospital) schema catalogue. Phase 4.
+pack: hospital
+title: CareBridge (hospital)
+tables:
+  organisation:
+    about: One row per healthcare organisation (hospital or clinic) from Synthea.
+    primary_key: organisation_id
+    keywords: [organisation, organization, hospital, clinic, facility]
+    columns:
+      organisation_id: {type: VARCHAR, required: true, about: "e.g. ORG0001"}
+      synthea_org_id: {type: VARCHAR, required: true, about: Synthea organisation ID}
+      name: {type: VARCHAR, required: true, about: Synthetic organisation name}
+      city: {type: VARCHAR, hint: true}
+      state: {type: VARCHAR}
+ 
+  encounter:
+    about: One row per hospital visit of any kind.
+    primary_key: encounter_id
+    person_dated: true
+    dates: [encounter_date]
+    keywords: [encounter, encounters, visit, visits, appointment, emergency, inpatient, outpatient, wellness, ambulatory]
+    columns:
+      encounter_id: {type: VARCHAR, required: true, about: "e.g. ENC0000001"}
+      synthea_encounter_id: {type: VARCHAR, required: true, about: Synthea encounter ID}
+      person_id: {type: VARCHAR, required: true, references: person.person_id}
+      organisation_id: {type: VARCHAR, references: organisation.organisation_id}
+      hcp_id: {type: VARCHAR, references: hcp.hcp_id, about: Clinician seen}
+      encounter_class: {type: VARCHAR, required: true, about: Type of visit, hint: true}
+      encounter_date: {type: DATE, required: true, about: Date the visit started}
+      start_time: {type: TIMESTAMP, required: true}
+      stop_time: {type: TIMESTAMP}
+      description: {type: VARCHAR, hint: true}
+      total_cost: {type: DOUBLE, about: Total cost of the visit}
+ 
+  admission:
+    about: >-
+      One row per inpatient stay. readmitted_30d is true when the same person
+      was admitted again within 30 days of this discharge.
+    primary_key: admission_id
+    person_dated: true
+    dates: [admit_date]
+    keywords: [admission, admissions, admitted, readmission, readmissions, readmitted, inpatient, stay, discharge, discharged]
+    columns:
+      admission_id: {type: VARCHAR, required: true, about: "e.g. ADM000001"}
+      encounter_id: {type: VARCHAR, required: true, references: encounter.encounter_id}
+      person_id: {type: VARCHAR, required: true, references: person.person_id}
+      admit_date: {type: DATE, required: true}
+      discharge_date: {type: DATE, required: true}
+      length_of_stay: {type: INTEGER, required: true, about: Days between admission and discharge}
+      days_to_next_admission: {type: INTEGER, about: Days from this discharge to the next admission. NULL if none}
+      readmitted_30d: {type: BOOLEAN, required: true, about: true if readmitted within 30 days of this discharge}
+ 
+  diagnosis:
+    about: >-
+      One row per diagnosis (Synthea conditions). A person can have the same
+      condition more than once.
+    primary_key: diagnosis_id
+    person_dated: true
+    dates: [start_date]
+    keywords: [diagnosis, diagnoses, diagnosed, condition, conditions, disease, disorder, diabetes, hypertension, asthma, heart]
+    columns:
+      diagnosis_id: {type: VARCHAR, required: true, about: "e.g. DX0000001"}
+      person_id: {type: VARCHAR, required: true, references: person.person_id}
+      encounter_id: {type: VARCHAR, references: encounter.encounter_id}
+      start_date: {type: DATE, required: true}
+      stop_date: {type: DATE, about: NULL means still active}
+      code: {type: VARCHAR, about: SNOMED-CT code}
+      description: {type: VARCHAR, required: true, about: "Condition name, e.g. 'Diabetes mellitus type 2 (disorder)'", hint: true}
+      is_active: {type: BOOLEAN, required: true, about: true if stop_date is NULL}
+ 
+rules:
+  - name: discharge_after_admit
+    table: admission
+    column: discharge_date
+    sql: SELECT admission_id AS row_key FROM {admission} WHERE discharge_date < admit_date
+ 
+join_paths:
+  - encounter.person_id = person.person_id
+  - encounter.organisation_id = organisation.organisation_id
+  - encounter.hcp_id = hcp.hcp_id
+  - admission.encounter_id = encounter.encounter_id
+  - diagnosis.person_id = person.person_id
+ 
+examples:
+  - question: How many emergency encounters were there?
+    sql: SELECT COUNT(*) AS encounters FROM encounter WHERE encounter_class = 'emergency'
+  - question: How many people currently have anemia?
+    sql: >-
+      SELECT COUNT(DISTINCT person_id) AS people FROM diagnosis
+      WHERE description ILIKE '%anemia%' AND is_active

@@ -1,0 +1,112 @@
+# CareBridge (hospital) text-to-SQL test set. Gold answers are queries.
+pack: hospital
+questions:
+  - id: HS01
+    type: sql
+    question: How many people are recorded as deceased?
+    gold_sql: SELECT COUNT(*) FROM person WHERE death_date IS NOT NULL
+  - id: HS02
+    type: sql
+    question: How many encounters are there in total?
+    gold_sql: SELECT COUNT(*) FROM encounter
+  - id: HS03
+    type: sql
+    question: How many encounters are there of each encounter class?
+    gold_sql: SELECT encounter_class, COUNT(*) FROM encounter GROUP BY encounter_class
+  - id: HS04
+    type: sql
+    question: How many inpatient admissions were there?
+    gold_sql: SELECT COUNT(*) FROM admission
+  - id: HS05
+    type: sql
+    question: How many admissions were followed by a readmission within 30 days?
+    gold_sql: SELECT COUNT(*) FROM admission WHERE readmitted_30d
+  - id: HS06
+    type: sql
+    question: What percentage of admissions were followed by a readmission within 30 days?
+    gold_sql: >-
+      SELECT ROUND(100.0 * AVG(CASE WHEN readmitted_30d THEN 1 ELSE 0 END), 2)
+      FROM admission
+  - id: HS07
+    type: sql
+    question: What is the average length of stay of an admission, in days?
+    gold_sql: SELECT ROUND(AVG(length_of_stay), 2) FROM admission
+  - id: HS08
+    type: sql
+    question: How many people have ever been diagnosed with type 2 diabetes?
+    gold_sql: >-
+      SELECT COUNT(DISTINCT person_id) FROM diagnosis
+      WHERE description ILIKE '%diabetes mellitus type 2%'
+  - id: HS09
+    type: sql
+    question: How many people currently have essential hypertension?
+    gold_sql: >-
+      SELECT COUNT(DISTINCT person_id) FROM diagnosis
+      WHERE description ILIKE '%essential hypertension%' AND is_active
+  - id: HS10
+    type: sql
+    question: What are the 5 most common diagnoses, by number of people?
+    gold_sql: >-
+      SELECT description, COUNT(DISTINCT person_id) AS n FROM diagnosis
+      GROUP BY description ORDER BY n DESC LIMIT 5
+    match_columns: [0]
+    tie_sql: >-
+      SELECT COUNT(DISTINCT person_id) AS n FROM diagnosis
+      GROUP BY description ORDER BY n DESC LIMIT 2 OFFSET 4
+  - id: HS11
+    type: sql
+    question: Which organisation had the most encounters?
+    gold_sql: >-
+      SELECT o.name, COUNT(*) AS n FROM encounter e
+      JOIN organisation o ON o.organisation_id = e.organisation_id
+      GROUP BY o.name ORDER BY n DESC LIMIT 1
+    match_columns: [0]
+    tie_sql: >-
+      SELECT COUNT(*) AS n FROM encounter
+      GROUP BY organisation_id ORDER BY n DESC LIMIT 2
+  - id: HS12
+    type: sql
+    question: Which year had the most encounters?
+    gold_sql: >-
+      SELECT year(encounter_date) AS y, COUNT(*) AS n FROM encounter
+      GROUP BY y ORDER BY n DESC LIMIT 1
+    match_columns: [0]
+    tie_sql: >-
+      SELECT COUNT(*) AS n FROM encounter
+      GROUP BY year(encounter_date) ORDER BY n DESC LIMIT 2
+  - id: HS13
+    type: sql
+    question: What is the total cost of all emergency encounters?
+    gold_sql: >-
+      SELECT ROUND(SUM(total_cost), 2) FROM encounter
+      WHERE encounter_class = 'emergency'
+  - id: HS14
+    type: sql
+    question: How many people have had at least one inpatient admission?
+    gold_sql: SELECT COUNT(DISTINCT person_id) FROM admission
+  - id: HS15
+    type: sql
+    question: What is the longest length of stay of any admission, in days?
+    gold_sql: SELECT MAX(length_of_stay) FROM admission
+  - id: HS16
+    type: sql
+    question: How many encounters did people who have since died have in total?
+    gold_sql: >-
+      SELECT COUNT(*) FROM encounter e JOIN person p ON p.person_id = e.person_id
+      WHERE p.death_date IS NOT NULL
+  - id: HS17
+    type: sql
+    question: How many people had more than one admission?
+    gold_sql: >-
+      SELECT COUNT(*) FROM (SELECT person_id FROM admission
+      GROUP BY person_id HAVING COUNT(*) > 1)
+  - id: HS18
+    type: sql
+    question: What is the average number of encounters per person, among people with at least one encounter?
+    gold_sql: SELECT ROUND(COUNT(*) * 1.0 / COUNT(DISTINCT person_id), 2) FROM encounter
+  - id: HS19
+    type: unanswerable
+    question: What was the most recent blood pressure reading for person PER000001?
+  - id: HS20
+    type: unanswerable
+    question: Which ward was each inpatient admitted to?

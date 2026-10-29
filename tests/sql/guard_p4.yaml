@@ -1,0 +1,29 @@
+# Phase 4 guard test suite. Every "blocked" query must be refused before or
+# while it runs; every "allowed" query must run.
+cases:
+  - {expect: allowed, sql: "SELECT COUNT(*) FROM person"}
+  - {expect: allowed, sql: "select gender, count(*) from person group by gender;"}
+  - {expect: allowed, sql: "WITH d AS (SELECT person_id FROM diagnosis) SELECT COUNT(*) FROM d"}
+  - {expect: allowed, sql: "-- a comment\nSELECT COUNT(*) FROM claim"}
+  - {expect: allowed, sql: "SELECT COUNT(*) FROM main.person"}
+  - {expect: allowed, sql: "SELECT c.status, COUNT(*) FROM claim c JOIN account a ON a.person_id = c.person_id GROUP BY 1"}
+  - {expect: allowed, sql: "SELECT * FROM person_360 LIMIT 5"}
+  - {expect: blocked, why: write, sql: "DELETE FROM person"}
+  - {expect: blocked, why: write, sql: "DROP TABLE claim"}
+  - {expect: blocked, why: write, sql: "UPDATE account SET status = 'closed'"}
+  - {expect: blocked, why: write, sql: "INSERT INTO loan SELECT * FROM loan"}
+  - {expect: blocked, why: write, sql: "CREATE TABLE copy_of_person AS SELECT * FROM person"}
+  - {expect: blocked, why: two statements, sql: "SELECT 1; DROP TABLE person"}
+  - {expect: blocked, why: unknown table, sql: "SELECT * FROM salaries"}
+  - {expect: blocked, why: system catalogue, sql: "SELECT * FROM information_schema.tables"}
+  - {expect: blocked, why: system catalogue, sql: "SELECT * FROM sqlite_master"}
+  - {expect: blocked, why: table function, sql: "SELECT * FROM duckdb_tables()"}
+  - {expect: blocked, why: file access, sql: "SELECT * FROM read_csv('C:/Windows/win.ini')"}
+  - {expect: blocked, why: file access, sql: "SELECT * FROM 'data/world/person.parquet'"}
+  - {expect: blocked, why: file access, sql: "COPY person TO 'leak.csv'"}
+  - {expect: blocked, why: attach, sql: "ATTACH 'other.duckdb' AS other"}
+  - {expect: blocked, why: extension, sql: "INSTALL httpfs"}
+  - {expect: blocked, why: settings, sql: "SET enable_external_access = true"}
+  - {expect: blocked, why: settings, sql: "PRAGMA database_list"}
+  - {expect: blocked, why: parse error, sql: "SELEC COUNT(*) FROM person"}
+  - {expect: blocked, why: time limit, sql: "WITH RECURSIVE n(i) AS (SELECT 1 UNION ALL SELECT i + 1 FROM n) SELECT COUNT(*) FROM n"}

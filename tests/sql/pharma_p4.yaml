@@ -1,0 +1,117 @@
+# PharmaSignal (pharma) text-to-SQL test set.
+pack: pharma
+questions:
+  - id: PS01
+    type: sql
+    question: How many drug products are in the database?
+    gold_sql: SELECT COUNT(*) FROM drug
+  - id: PS02
+    type: sql
+    question: How many drug products are combination products?
+    gold_sql: SELECT COUNT(*) FROM drug WHERE is_combination
+  - id: PS03
+    type: sql
+    question: How many drug products are linked to a pharma-pack label drug?
+    gold_sql: SELECT COUNT(*) FROM drug WHERE label_drug IS NOT NULL
+  - id: PS04
+    type: sql
+    question: How many prescriptions are there in total?
+    gold_sql: SELECT COUNT(*) FROM prescription
+  - id: PS05
+    type: sql
+    question: How many prescriptions are still active?
+    gold_sql: SELECT COUNT(*) FROM prescription WHERE is_active
+  - id: PS06
+    type: sql
+    question: How many people have been prescribed metformin?
+    gold_sql: >-
+      SELECT COUNT(DISTINCT r.person_id) FROM prescription r
+      JOIN drug d ON d.drug_id = r.drug_id WHERE d.label_drug = 'metformin'
+  - id: PS07
+    type: sql
+    question: How many prescriptions are there for each label drug?
+    gold_sql: >-
+      SELECT d.label_drug, COUNT(*) FROM prescription r
+      JOIN drug d ON d.drug_id = r.drug_id WHERE d.label_drug IS NOT NULL
+      GROUP BY d.label_drug
+  - id: PS08
+    type: sql
+    question: Which label drug has been prescribed to the most people?
+    gold_sql: >-
+      SELECT d.label_drug, COUNT(DISTINCT r.person_id) AS n FROM prescription r
+      JOIN drug d ON d.drug_id = r.drug_id WHERE d.label_drug IS NOT NULL
+      GROUP BY d.label_drug ORDER BY n DESC LIMIT 1
+    match_columns: [0]
+    tie_sql: >-
+      SELECT COUNT(DISTINCT r.person_id) AS n FROM prescription r
+      JOIN drug d ON d.drug_id = r.drug_id WHERE d.label_drug IS NOT NULL
+      GROUP BY d.label_drug ORDER BY n DESC LIMIT 2
+  - id: PS09
+    type: sql
+    question: How many HCPs are there?
+    gold_sql: SELECT COUNT(*) FROM hcp
+  - id: PS10
+    type: sql
+    question: How many HCPs are there in each speciality?
+    gold_sql: SELECT speciality, COUNT(*) FROM hcp GROUP BY speciality
+  - id: PS11
+    type: sql
+    question: How many different HCPs have written at least one prescription?
+    gold_sql: SELECT COUNT(DISTINCT hcp_id) FROM prescription
+  - id: PS12
+    type: sql
+    question: Which HCP wrote the most prescriptions?
+    gold_sql: >-
+      SELECT hcp_id, COUNT(*) AS n FROM prescription WHERE hcp_id IS NOT NULL
+      GROUP BY hcp_id ORDER BY n DESC LIMIT 1
+    match_columns: [0]
+    tie_sql: >-
+      SELECT COUNT(*) AS n FROM prescription WHERE hcp_id IS NOT NULL
+      GROUP BY hcp_id ORDER BY n DESC LIMIT 2
+  - id: PS13
+    type: sql
+    question: What is the total cost of all prescriptions?
+    gold_sql: SELECT ROUND(SUM(total_cost), 2) FROM prescription
+  - id: PS14
+    type: sql
+    question: What is the average number of dispenses per prescription?
+    gold_sql: SELECT ROUND(AVG(dispenses), 2) FROM prescription
+  - id: PS15
+    type: sql
+    question: How many people have an active prescription for a warfarin product?
+    gold_sql: >-
+      SELECT COUNT(DISTINCT r.person_id) FROM prescription r
+      JOIN drug d ON d.drug_id = r.drug_id
+      WHERE d.label_drug = 'warfarin' AND r.is_active
+  - id: PS16
+    type: sql
+    question: In which year were the most prescriptions started?
+    gold_sql: >-
+      SELECT year(start_date) AS y, COUNT(*) AS n FROM prescription
+      GROUP BY y ORDER BY n DESC LIMIT 1
+    match_columns: [0]
+    tie_sql: >-
+      SELECT COUNT(*) AS n FROM prescription
+      GROUP BY year(start_date) ORDER BY n DESC LIMIT 2
+  - id: PS17
+    type: sql
+    question: How many people have been prescribed both lisinopril and hydrochlorothiazide?
+    gold_sql: >-
+      SELECT COUNT(*) FROM (
+      SELECT r.person_id FROM prescription r JOIN drug d ON d.drug_id = r.drug_id
+      WHERE d.label_drug = 'lisinopril'
+      INTERSECT
+      SELECT r.person_id FROM prescription r JOIN drug d ON d.drug_id = r.drug_id
+      WHERE d.label_drug = 'hydrochlorothiazide')
+  - id: PS18
+    type: sql
+    question: How many prescriptions are for combination products?
+    gold_sql: >-
+      SELECT COUNT(*) FROM prescription r JOIN drug d ON d.drug_id = r.drug_id
+      WHERE d.is_combination
+  - id: PS19
+    type: unanswerable
+    question: What is the retail price of metformin in pharmacies?
+  - id: PS20
+    type: unanswerable
+    question: How many adverse event reports mention warfarin?

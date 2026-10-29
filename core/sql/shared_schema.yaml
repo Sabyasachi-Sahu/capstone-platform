@@ -1,0 +1,83 @@
+# Shared tables and gold views used by every pack. Phase 4.
+pack: shared
+title: Shared world
+tables:
+  person:
+    about: >-
+      One row per synthetic person. The shared key for every pack. Names and
+      identity numbers are not kept.
+    primary_key: person_id
+    dates: [birth_date, death_date]
+    keywords: [person, people, persons, patient, patients, alive, died, dead, deceased, age, born]
+    columns:
+      person_id: {type: VARCHAR, required: true, about: "Shared ID, e.g. PER000001"}
+      birth_date: {type: DATE, required: true, about: Date of birth}
+      death_date: {type: DATE, about: Date of death. NULL if alive}
+      gender: {type: VARCHAR, required: true, about: M or F, hint: true}
+      state: {type: VARCHAR, about: US state, hint: true}
+      is_policyholder: {type: BOOLEAN, required: true, about: true if the person holds insurance (ClaimSense)}
+      is_bank_customer: {type: BOOLEAN, required: true, about: true if the person banks with CreditGuard}
+ 
+views:
+  person_360:
+    about: >-
+      Gold view. One row per person with activity counts from every pack.
+      Use it for questions that compare packs per person.
+    keywords: [person, overview, across, every, 360, summary]
+    sources: [person, encounter, admission, prescription, policy, claim, payout, account, loan]
+    sql: |
+      SELECT p.person_id,
+             p.is_policyholder,
+             p.is_bank_customer,
+             (SELECT COUNT(*) FROM encounter e WHERE e.person_id = p.person_id) AS encounters,
+             (SELECT COUNT(*) FROM admission a WHERE a.person_id = p.person_id) AS admissions,
+             (SELECT COUNT(*) FROM admission a
+               WHERE a.person_id = p.person_id AND a.readmitted_30d) AS readmissions_30d,
+             (SELECT COUNT(*) FROM prescription r WHERE r.person_id = p.person_id) AS prescriptions,
+             (SELECT COUNT(*) FROM policy o WHERE o.person_id = p.person_id) AS policies,
+             (SELECT COUNT(*) FROM claim c WHERE c.person_id = p.person_id) AS claims,
+             (SELECT COALESCE(SUM(y.amount), 0) FROM payout y
+               WHERE y.person_id = p.person_id) AS payout_amount,
+             (SELECT COUNT(*) FROM account t WHERE t.person_id = p.person_id) AS accounts,
+             (SELECT COUNT(*) FROM loan l WHERE l.person_id = p.person_id) AS loans
+      FROM person p
+    columns:
+      person_id: {type: VARCHAR, about: person.person_id}
+      is_policyholder: {type: BOOLEAN}
+      is_bank_customer: {type: BOOLEAN}
+      encounters: {type: BIGINT, about: Number of hospital encounters}
+      admissions: {type: BIGINT, about: Number of inpatient admissions}
+      readmissions_30d: {type: BIGINT, about: Admissions followed by another admission within 30 days}
+      prescriptions: {type: BIGINT}
+      policies: {type: BIGINT}
+      claims: {type: BIGINT}
+      payout_amount: {type: DOUBLE, about: Total insurance paid out to the person}
+      accounts: {type: BIGINT}
+      loans: {type: BIGINT}
+ 
+  drug_utilisation:
+    about: >-
+      Gold view. One row per drug with prescriptions, patients and pharmacy
+      claims. Used to reconcile pharmacy claims with prescriptions (scenario X3).
+    keywords: [drug, utilisation, utilization, uptake, reconcile, pharmacy]
+    sources: [drug, prescription, claim]
+    sql: |
+      SELECT d.drug_id,
+             d.label_drug,
+             d.description,
+             COUNT(DISTINCT r.rx_id) AS prescriptions,
+             COUNT(DISTINCT r.person_id) AS patients,
+             COUNT(DISTINCT c.claim_id) AS pharmacy_claims,
+             COALESCE(SUM(c.amount_approved), 0) AS approved_amount
+      FROM drug d
+      LEFT JOIN prescription r ON r.drug_id = d.drug_id
+      LEFT JOIN claim c ON c.rx_id = r.rx_id AND c.claim_type = 'pharmacy'
+      GROUP BY d.drug_id, d.label_drug, d.description
+    columns:
+      drug_id: {type: VARCHAR, about: drug.drug_id}
+      label_drug: {type: VARCHAR, about: Pharma-pack label name or NULL}
+      description: {type: VARCHAR}
+      prescriptions: {type: BIGINT}
+      patients: {type: BIGINT}
+      pharmacy_claims: {type: BIGINT}
+      approved_amount: {type: DOUBLE}

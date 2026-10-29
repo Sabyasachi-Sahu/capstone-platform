@@ -1,0 +1,51 @@
+defect_id,table_name,row_key,column_name,defect_type,detail
+DEF0001,bank_transaction,TXN0008405,txn_date,date_out_of_range,"set to 2025-04-07, after death on 2025-01-16"
+DEF0002,bank_transaction,TXN0033429,txn_date,date_out_of_range,"set to 2026-03-31, after death on 2025-12-05"
+DEF0003,bank_transaction,TXN0064008,txn_date,date_out_of_range,"set to 2027-09-13, after data end 2026-10-10"
+DEF0004,bank_transaction,TXN0085088,txn_date,date_out_of_range,"set to 2027-06-08, after data end 2026-10-10"
+DEF0005,bank_transaction,TXN0004568,txn_id,duplicate,"row copied, same primary key"
+DEF0006,bank_transaction,TXN0010709,txn_id,duplicate,"row copied, same primary key"
+DEF0007,bank_transaction,TXN0011303,txn_id,duplicate,"row copied, same primary key"
+DEF0008,bank_transaction,TXN0040273,txn_id,duplicate,"row copied, same primary key"
+DEF0009,bank_transaction,TXN0051548,txn_id,duplicate,"row copied, same primary key"
+DEF0010,bank_transaction,TXN0037316,amount,null,value set to NULL
+DEF0011,bank_transaction,TXN0038944,amount,null,value set to NULL
+DEF0012,bank_transaction,TXN0047842,amount,null,value set to NULL
+DEF0013,bank_transaction,TXN0069708,amount,null,value set to NULL
+DEF0014,bank_transaction,TXN0009247,account_id,orphan,"points to ACC983327X, which does not exist"
+DEF0015,bank_transaction,TXN0053107,account_id,orphan,"points to ACC932952X, which does not exist"
+DEF0016,bank_transaction,TXN0057063,account_id,orphan,"points to ACC967290X, which does not exist"
+DEF0017,bank_transaction,TXN0073277,account_id,orphan,"points to ACC971321X, which does not exist"
+DEF0018,claim,CLM0014850,submitted_date,date_out_of_range,"set to 2027-07-05, after data end 2026-10-10"
+DEF0019,claim,CLM0015842,submitted_date,date_out_of_range,"set to 2026-11-24, after data end 2026-10-10"
+DEF0020,claim,CLM0015918,submitted_date,date_out_of_range,"set to 2027-10-11, after data end 2026-10-10"
+DEF0021,claim,CLM0002105,claim_id,duplicate,"row copied, same primary key"
+DEF0022,claim,CLM0024741,claim_id,duplicate,"row copied, same primary key"
+DEF0023,claim,CLM0027574,claim_id,duplicate,"row copied, same primary key"
+DEF0024,claim,CLM0007414,amount_claimed,null,value set to NULL
+DEF0025,claim,CLM0023964,amount_claimed,null,value set to NULL
+DEF0026,claim,CLM0031549,amount_claimed,null,value set to NULL
+DEF0027,claim,CLM0003038,policy_id,orphan,"points to PLC950991X, which does not exist"
+DEF0028,claim,CLM0017332,policy_id,orphan,"points to PLC938421X, which does not exist"
+DEF0029,claim,CLM0026225,policy_id,orphan,"points to PLC969542X, which does not exist"
+DEF0030,diagnosis,DX0009552,diagnosis_id,duplicate,"row copied, same primary key"
+DEF0031,diagnosis,DX0028853,diagnosis_id,duplicate,"row copied, same primary key"
+DEF0032,diagnosis,DX0002952,description,null,value set to NULL
+DEF0033,diagnosis,DX0036463,description,null,value set to NULL
+DEF0034,diagnosis,DX0039223,description,null,value set to NULL
+DEF0035,loan,LON000048,start_date,date_out_of_range,"set to 2012-05-27, after death on 2012-05-16"
+DEF0036,loan,LON000115,start_date,date_out_of_range,"set to 2025-10-17, after death on 2025-08-24"
+DEF0037,loan,LON000093,principal,null,value set to NULL
+DEF0038,loan,LON000161,principal,null,value set to NULL
+DEF0039,payout,PAY0002553,payout_id,duplicate,"row copied, same primary key"
+DEF0040,payout,PAY0023456,payout_id,duplicate,"row copied, same primary key"
+DEF0041,payout,PAY0027713,account_id,orphan,"points to ACC938972X, which does not exist"
+DEF0042,payout,PAY0030273,account_id,orphan,"points to ACC992626X, which does not exist"
+DEF0043,prescription,RX0003766,start_date,date_out_of_range,"set to 2026-11-17, after data end 2026-10-10"
+DEF0044,prescription,RX0039551,start_date,date_out_of_range,"set to 2027-02-06, after data end 2026-10-10"
+DEF0045,prescription,RX0011052,rx_id,duplicate,"row copied, same primary key"
+DEF0046,prescription,RX0029355,rx_id,duplicate,"row copied, same primary key"
+DEF0047,prescription,RX0037878,rx_id,duplicate,"row copied, same primary key"
+DEF0048,prescription,RX0035754,drug_id,orphan,"points to DRG963240X, which does not exist"
+DEF0049,prescription,RX0049282,drug_id,orphan,"points to DRG936424X, which does not exist"
+DEF0050,prescription,RX0053076,drug_id,orphan,"points to DRG994908X, which does not exist"

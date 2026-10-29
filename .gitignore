@@ -14,3 +14,7 @@ data/vectordb/
 # Phase 3 generated artifacts (rebuilt by scripts)
 data/dictionary/
 tests/scores/
+# Phase 4 generated data (rebuilt by the scripts)
+data/world/gen/
+data/lake/
+data/warehouse/

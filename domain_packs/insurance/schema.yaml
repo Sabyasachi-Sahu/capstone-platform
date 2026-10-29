@@ -1,0 +1,102 @@
+# ClaimSense (insurance) schema catalogue. Phase 4. Claims are seeded from
+# Synthea claims and prescriptions; policies and payouts are generated.
+pack: insurance
+title: ClaimSense (insurance)
+tables:
+  policyholder:
+    about: One row per insured person.
+    primary_key: policyholder_id
+    keywords: [policyholder, policyholders, insured]
+    columns:
+      policyholder_id: {type: VARCHAR, required: true, about: "e.g. POL000001 (same number as person_id)"}
+      person_id: {type: VARCHAR, required: true, references: person.person_id}
+ 
+  policy:
+    about: One row per health insurance policy.
+    primary_key: policy_id
+    person_dated: true
+    dates: [start_date]
+    keywords: [policy, policies, premium, premiums, product, cover, coverage, lapsed, insurance]
+    columns:
+      policy_id: {type: VARCHAR, required: true, about: "e.g. PLC000001"}
+      policyholder_id: {type: VARCHAR, required: true, references: policyholder.policyholder_id}
+      person_id: {type: VARCHAR, required: true, references: person.person_id}
+      product: {type: VARCHAR, required: true, about: "Basic, Standard or Premium", hint: true}
+      coverage_rate: {type: DOUBLE, required: true, about: "Share of a claim that is paid (0.6, 0.8 or 0.9)"}
+      annual_premium: {type: DOUBLE, required: true}
+      start_date: {type: DATE, required: true}
+      end_date: {type: DATE, about: NULL while active}
+      status: {type: VARCHAR, required: true, about: "active, lapsed or ended (ended at death)", hint: true}
+ 
+  claim:
+    about: >-
+      One row per insurance claim. Medical claims come from encounters,
+      pharmacy claims from prescriptions. Every claim names its encounter.
+    primary_key: claim_id
+    person_dated: true
+    dates: [service_date, submitted_date]
+    keywords: [claim, claims, claimed, approved, denied, pending, pharmacy, medical, reimburse]
+    columns:
+      claim_id: {type: VARCHAR, required: true, about: "e.g. CLM0000001"}
+      policy_id: {type: VARCHAR, required: true, references: policy.policy_id}
+      person_id: {type: VARCHAR, required: true, references: person.person_id}
+      claim_type: {type: VARCHAR, required: true, about: medical or pharmacy, hint: true}
+      encounter_id: {type: VARCHAR, required: true, references: encounter.encounter_id}
+      rx_id: {type: VARCHAR, references: prescription.rx_id, about: Set for pharmacy claims}
+      hcp_id: {type: VARCHAR, references: hcp.hcp_id}
+      synthea_claim_id: {type: VARCHAR, about: Synthea claim ID for medical claims}
+      service_date: {type: DATE, required: true}
+      submitted_date: {type: DATE, required: true}
+      amount_claimed: {type: DOUBLE, required: true}
+      amount_approved: {type: DOUBLE, required: true, about: 0 unless approved}
+      status: {type: VARCHAR, required: true, about: "approved, denied or pending", hint: true}
+ 
+  payout:
+    about: >-
+      One row per payment of an approved claim. account_id is the bank account
+      it landed in, or NULL when paid by cheque.
+    primary_key: payout_id
+    person_dated: true
+    dates: [payout_date]
+    keywords: [payout, payouts, paid, payment, cheque, reimbursement]
+    columns:
+      payout_id: {type: VARCHAR, required: true, about: "e.g. PAY000001"}
+      claim_id: {type: VARCHAR, required: true, references: claim.claim_id}
+      person_id: {type: VARCHAR, required: true, references: person.person_id}
+      account_id: {type: VARCHAR, references: account.account_id}
+      payout_date: {type: DATE, required: true}
+      amount: {type: DOUBLE, required: true}
+      method: {type: VARCHAR, required: true, about: bank_transfer or cheque, hint: true}
+ 
+rules:
+  - name: claim_follows_encounter
+    table: claim
+    column: service_date
+    sql: >-
+      SELECT c.claim_id AS row_key FROM {claim} c JOIN {encounter} e
+      ON e.encounter_id = c.encounter_id
+      WHERE c.service_date < e.encounter_date OR c.submitted_date < c.service_date
+  - name: payout_follows_approved_claim
+    table: payout
+    column: payout_date
+    sql: >-
+      SELECT y.payout_id AS row_key FROM {payout} y JOIN {claim} c
+      ON c.claim_id = y.claim_id
+      WHERE c.status <> 'approved' OR y.payout_date < c.submitted_date
+ 
+join_paths:
+  - policyholder.person_id = person.person_id
+  - policy.policyholder_id = policyholder.policyholder_id
+  - claim.policy_id = policy.policy_id
+  - claim.encounter_id = encounter.encounter_id
+  - claim.rx_id = prescription.rx_id
+  - payout.claim_id = claim.claim_id
+  - payout.account_id = account.account_id
+ 
+examples:
+  - question: How many claims are pending?
+    sql: SELECT COUNT(*) AS claims FROM claim WHERE status = 'pending'
+  - question: What is the total amount approved for Basic policies?
+    sql: >-
+      SELECT ROUND(SUM(c.amount_approved), 2) AS approved FROM claim c
+      JOIN policy p ON p.policy_id = c.policy_id WHERE p.product = 'Basic'

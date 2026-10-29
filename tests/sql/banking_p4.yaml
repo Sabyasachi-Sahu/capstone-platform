@@ -1,0 +1,102 @@
+# CreditGuard (banking) text-to-SQL test set.
+pack: banking
+questions:
+  - id: BS01
+    type: sql
+    question: How many bank customers are there?
+    gold_sql: SELECT COUNT(*) FROM bank_customer
+  - id: BS02
+    type: sql
+    question: How many customers are there with each KYC status?
+    gold_sql: SELECT kyc_status, COUNT(*) FROM bank_customer GROUP BY kyc_status
+  - id: BS03
+    type: sql
+    question: How many customers have a high risk rating?
+    gold_sql: SELECT COUNT(*) FROM bank_customer WHERE risk_rating = 'high'
+  - id: BS04
+    type: sql
+    question: How many accounts are open?
+    gold_sql: SELECT COUNT(*) FROM account WHERE status = 'open'
+  - id: BS05
+    type: sql
+    question: How many accounts are there of each account type?
+    gold_sql: SELECT account_type, COUNT(*) FROM account GROUP BY account_type
+  - id: BS06
+    type: sql
+    question: How many loans are there of each loan type?
+    gold_sql: SELECT loan_type, COUNT(*) FROM loan GROUP BY loan_type
+  - id: BS07
+    type: sql
+    question: What is the total principal of all mortgage loans?
+    gold_sql: SELECT ROUND(SUM(principal), 2) FROM loan WHERE loan_type = 'mortgage'
+  - id: BS08
+    type: sql
+    question: How many loans are in arrears?
+    gold_sql: SELECT COUNT(*) FROM loan WHERE status = 'in_arrears'
+  - id: BS09
+    type: sql
+    question: What is the average interest rate of active loans?
+    gold_sql: SELECT ROUND(AVG(interest_rate), 2) FROM loan WHERE status = 'active'
+  - id: BS10
+    type: sql
+    question: How many customers have more than one loan?
+    gold_sql: >-
+      SELECT COUNT(*) FROM (SELECT customer_id FROM loan
+      GROUP BY customer_id HAVING COUNT(*) > 1)
+  - id: BS11
+    type: sql
+    question: What is the largest loan principal?
+    gold_sql: SELECT MAX(principal) FROM loan
+  - id: BS12
+    type: sql
+    question: How many transactions are there of each transaction type?
+    gold_sql: SELECT txn_type, COUNT(*) FROM bank_transaction GROUP BY txn_type
+  - id: BS13
+    type: sql
+    question: What is the total amount of all CASH_IN transactions?
+    gold_sql: >-
+      SELECT ROUND(SUM(amount), 2) FROM bank_transaction WHERE txn_type = 'CASH_IN'
+  - id: BS14
+    type: sql
+    question: Which channel is used for the most transactions?
+    gold_sql: >-
+      SELECT channel, COUNT(*) AS n FROM bank_transaction
+      GROUP BY channel ORDER BY n DESC LIMIT 1
+    match_columns: [0]
+    tie_sql: >-
+      SELECT COUNT(*) AS n FROM bank_transaction
+      GROUP BY channel ORDER BY n DESC LIMIT 2
+  - id: BS15
+    type: sql
+    question: What is the average amount of a debit transaction?
+    gold_sql: >-
+      SELECT ROUND(AVG(amount), 2) FROM bank_transaction WHERE direction = 'debit'
+  - id: BS16
+    type: sql
+    question: How many customers with a pending KYC status have at least one open account?
+    gold_sql: >-
+      SELECT COUNT(DISTINCT c.customer_id) FROM bank_customer c
+      JOIN account a ON a.customer_id = c.customer_id
+      WHERE c.kyc_status = 'pending' AND a.status = 'open'
+  - id: BS17
+    type: sql
+    question: How many loans belong to customers with a high risk rating?
+    gold_sql: >-
+      SELECT COUNT(*) FROM loan l JOIN bank_customer c ON c.customer_id = l.customer_id
+      WHERE c.risk_rating = 'high'
+  - id: BS18
+    type: sql
+    question: In which year were the most loans started?
+    gold_sql: >-
+      SELECT year(start_date) AS y, COUNT(*) AS n FROM loan
+      GROUP BY y ORDER BY n DESC LIMIT 1
+    match_columns: [0]
+    tie_sql: >-
+      SELECT COUNT(*) AS n FROM loan
+      GROUP BY year(start_date) ORDER BY n DESC LIMIT 2
+  - id: BS19
+    type: unanswerable
+    question: What is the credit score of each customer?
+  - id: BS20
+    type: unanswerable
+    question: Which customers have a mortgage on a property in Boston?

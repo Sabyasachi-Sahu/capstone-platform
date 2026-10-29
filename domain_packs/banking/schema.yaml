@@ -1,0 +1,88 @@
+# CreditGuard (banking) schema catalogue. Phase 4. All data is generated.
+pack: banking
+title: CreditGuard (banking)
+tables:
+  bank_customer:
+    about: One row per bank customer, with KYC (know your customer) fields.
+    primary_key: customer_id
+    person_dated: true
+    dates: [customer_since, kyc_verified_date]
+    keywords: [customer, customers, kyc, risk, rating, bank]
+    columns:
+      customer_id: {type: VARCHAR, required: true, about: "e.g. CUS000001 (same number as person_id)"}
+      person_id: {type: VARCHAR, required: true, references: person.person_id}
+      customer_since: {type: DATE, required: true}
+      kyc_status: {type: VARCHAR, required: true, about: "verified, pending or expired", hint: true}
+      kyc_verified_date: {type: DATE, about: NULL when KYC is pending}
+      risk_rating: {type: VARCHAR, required: true, about: "low, medium or high", hint: true}
+ 
+  account:
+    about: One row per bank account.
+    primary_key: account_id
+    person_dated: true
+    dates: [open_date]
+    keywords: [account, accounts, current, savings, open, closed, balance]
+    columns:
+      account_id: {type: VARCHAR, required: true, about: "e.g. ACC000001"}
+      customer_id: {type: VARCHAR, required: true, references: bank_customer.customer_id}
+      person_id: {type: VARCHAR, required: true, references: person.person_id}
+      account_type: {type: VARCHAR, required: true, about: current or savings, hint: true}
+      open_date: {type: DATE, required: true}
+      close_date: {type: DATE, about: NULL while open}
+      status: {type: VARCHAR, required: true, about: open or closed, hint: true}
+ 
+  loan:
+    about: One row per loan.
+    primary_key: loan_id
+    person_dated: true
+    dates: [start_date]
+    keywords: [loan, loans, borrow, borrowed, principal, interest, arrears, default, defaulted, mortgage, repaid, overdue]
+    columns:
+      loan_id: {type: VARCHAR, required: true, about: "e.g. LON000001"}
+      customer_id: {type: VARCHAR, required: true, references: bank_customer.customer_id}
+      person_id: {type: VARCHAR, required: true, references: person.person_id}
+      loan_type: {type: VARCHAR, required: true, about: "personal, auto, mortgage or medical", hint: true}
+      principal: {type: DOUBLE, required: true, about: Amount borrowed}
+      interest_rate: {type: DOUBLE, required: true, about: Annual rate in percent}
+      term_months: {type: INTEGER, required: true}
+      start_date: {type: DATE, required: true}
+      status: {type: VARCHAR, required: true, about: "active, repaid, in_arrears or defaulted", hint: true}
+      days_past_due: {type: INTEGER, required: true, about: 0 unless in arrears or defaulted}
+ 
+  bank_transaction:
+    about: One row per account movement (PaySim-style types).
+    primary_key: txn_id
+    person_dated: true
+    dates: [txn_date]
+    keywords: [transaction, transactions, payment, payments, transfer, transfers, cash, debit, credit, spend, spent, deposit]
+    columns:
+      txn_id: {type: VARCHAR, required: true, about: "e.g. TXN0000001"}
+      account_id: {type: VARCHAR, required: true, references: account.account_id}
+      person_id: {type: VARCHAR, required: true, references: person.person_id}
+      txn_date: {type: DATE, required: true}
+      txn_type: {type: VARCHAR, required: true, about: "PAYMENT, TRANSFER, CASH_OUT, CASH_IN or DEBIT", hint: true}
+      direction: {type: VARCHAR, required: true, about: credit (money in) or debit (money out), hint: true}
+      amount: {type: DOUBLE, required: true, about: Always positive. Use direction for the sign}
+      channel: {type: VARCHAR, required: true, about: "card, online, branch or atm", hint: true}
+ 
+rules:
+  - name: account_closed_after_open
+    table: account
+    column: close_date
+    sql: SELECT account_id AS row_key FROM {account} WHERE close_date < open_date
+ 
+join_paths:
+  - bank_customer.person_id = person.person_id
+  - account.customer_id = bank_customer.customer_id
+  - loan.customer_id = bank_customer.customer_id
+  - bank_transaction.account_id = account.account_id
+ 
+examples:
+  - question: How many savings accounts are closed?
+    sql: >-
+      SELECT COUNT(*) AS accounts FROM account
+      WHERE account_type = 'savings' AND status = 'closed'
+  - question: What is the total value of ATM cash withdrawals?
+    sql: >-
+      SELECT ROUND(SUM(amount), 2) AS total FROM bank_transaction
+      WHERE txn_type = 'CASH_OUT' AND channel = 'atm'

@@ -1,0 +1,48 @@
+# Router test list. Includes the two Phase 3 questions RAG had to refuse
+# (H08, H09), questions for each route, and questions that need both.
+questions:
+  - id: R01
+    route: sql
+    question: How many patients have diabetes?
+  - id: R02
+    route: sql
+    question: List every patient with hypertension.
+  - id: R03
+    route: sql
+    question: What share of customers have a pending KYC status?
+  - id: R04
+    route: sql
+    question: Which county has the most patients?
+  - id: R05
+    route: sql
+    question: What is the average premium per policy product?
+  - id: R06
+    route: sql
+    question: Give me the count of open accounts.
+  - id: R07
+    route: rag
+    question: Which patients have type 2 diabetes?
+  - id: R08
+    route: rag
+    question: What is the boxed warning for metformin?
+  - id: R09
+    route: rag
+    question: Which drugs interact with simvastatin?
+  - id: R10
+    route: rag
+    question: What does the record say about person PER000001?
+  - id: R11
+    route: rag
+    question: What is hydrochlorothiazide used to treat?
+  - id: R12
+    route: rag
+    question: What conditions commonly occur alongside type 2 diabetes?
+  - id: R13
+    route: both
+    question: How many people take warfarin, and what does its label warn about bleeding?
+  - id: R14
+    route: both
+    question: What does the lisinopril label say about pregnancy, and how many female patients have been prescribed it?
+  - id: R15
+    route: both
+    question: How many patients take metformin and why does its label warn about lactic acidosis?

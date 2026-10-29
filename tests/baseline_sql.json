@@ -1,0 +1,91 @@
+{
+  "hospital": {
+    "runs": 3,
+    "questions": 20,
+    "run_scores": [
+      1.0,
+      1.0,
+      0.95
+    ],
+    "mean": 0.9833,
+    "spread": 0.0236,
+    "retried": 6,
+    "created": "20261029_131809",
+    "scenarios": {}
+  },
+  "pharma": {
+    "runs": 3,
+    "questions": 20,
+    "run_scores": [
+      0.9,
+      0.85,
+      0.9
+    ],
+    "mean": 0.8833,
+    "spread": 0.0236,
+    "retried": 6,
+    "created": "20261029_132021",
+    "scenarios": {}
+  },
+  "banking": {
+    "runs": 3,
+    "questions": 20,
+    "run_scores": [
+      1.0,
+      1.0,
+      0.95
+    ],
+    "mean": 0.9833,
+    "spread": 0.0236,
+    "retried": 6,
+    "created": "20261029_132225",
+    "scenarios": {}
+  },
+  "insurance": {
+    "runs": 3,
+    "questions": 20,
+    "run_scores": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "mean": 1.0,
+    "spread": 0.0,
+    "retried": 6,
+    "created": "20261029_132434",
+    "scenarios": {}
+  },
+  "datasteward": {
+    "runs": 3,
+    "questions": 20,
+    "run_scores": [
+      0.9,
+      0.9,
+      0.9
+    ],
+    "mean": 0.9,
+    "spread": 0.0,
+    "retried": 6,
+    "created": "20261029_132642",
+    "scenarios": {}
+  },
+  "cross": {
+    "runs": 3,
+    "questions": 7,
+    "run_scores": [
+      0.7142857142857143,
+      0.8571428571428571,
+      0.7142857142857143
+    ],
+    "mean": 0.7619,
+    "spread": 0.0673,
+    "retried": 0,
+    "created": "20261029_132757",
+    "scenarios": {
+      "X1": 0.6667,
+      "X2": 1.0,
+      "X3": 0.5,
+      "X4": 1.0
+    }
+  }
+}

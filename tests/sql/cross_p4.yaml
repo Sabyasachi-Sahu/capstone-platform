@@ -1,0 +1,66 @@
+# Cross-domain scenarios from the master plan (section 5.3), as SQL tests.
+# expect_zero: the correct answer is 0 (an integrity check that must hold).
+pack: cross
+questions:
+  - id: X1a
+    scenario: X1
+    type: sql
+    question: For each label drug, how many people who were prescribed it had an admission followed by a readmission within 30 days?
+    gold_sql: >-
+      SELECT d.label_drug, COUNT(DISTINCT r.person_id) FROM prescription r
+      JOIN drug d ON d.drug_id = r.drug_id
+      JOIN admission a ON a.person_id = r.person_id
+      WHERE d.label_drug IS NOT NULL AND a.readmitted_30d
+      GROUP BY d.label_drug
+  - id: X1b
+    scenario: X1
+    type: sql
+    question: How many people prescribed lisinopril were readmitted within 30 days of a hospital discharge?
+    gold_sql: >-
+      SELECT COUNT(DISTINCT r.person_id) FROM prescription r
+      JOIN drug d ON d.drug_id = r.drug_id
+      JOIN admission a ON a.person_id = r.person_id
+      WHERE d.label_drug = 'lisinopril' AND a.readmitted_30d
+  - id: X2a
+    scenario: X2
+    type: sql
+    question: How many claims do not link to an encounter of the same person?
+    expect_zero: true
+    gold_sql: >-
+      SELECT COUNT(*) FROM claim c WHERE NOT EXISTS (SELECT 1 FROM encounter e
+      WHERE e.encounter_id = c.encounter_id AND e.person_id = c.person_id)
+  - id: X2b
+    scenario: X2
+    type: sql
+    question: How many medical claims were made for inpatient encounters, and what was their total approved amount?
+    gold_sql: >-
+      SELECT COUNT(*), ROUND(SUM(c.amount_approved), 2) FROM claim c
+      JOIN encounter e ON e.encounter_id = c.encounter_id
+      WHERE c.claim_type = 'medical' AND e.encounter_class = 'inpatient'
+  - id: X3a
+    scenario: X3
+    type: sql
+    question: How many pharmacy claims were made for each label drug?
+    gold_sql: >-
+      SELECT d.label_drug, COUNT(*) FROM claim c
+      JOIN prescription r ON r.rx_id = c.rx_id
+      JOIN drug d ON d.drug_id = r.drug_id
+      WHERE c.claim_type = 'pharmacy' AND d.label_drug IS NOT NULL
+      GROUP BY d.label_drug
+  - id: X3b
+    scenario: X3
+    type: sql
+    question: How many pharmacy claims do not match a prescription of the same person?
+    expect_zero: true
+    gold_sql: >-
+      SELECT COUNT(*) FROM claim c WHERE c.claim_type = 'pharmacy' AND NOT EXISTS
+      (SELECT 1 FROM prescription r WHERE r.rx_id = c.rx_id
+      AND r.person_id = c.person_id)
+  - id: X4a
+    scenario: X4
+    type: sql
+    question: How many insurance payouts landed in accounts of bank customers with a high risk rating?
+    gold_sql: >-
+      SELECT COUNT(*) FROM payout y JOIN account a ON a.account_id = y.account_id
+      JOIN bank_customer b ON b.customer_id = a.customer_id
+      WHERE b.risk_rating = 'high'

@@ -1,0 +1,61 @@
+# PharmaSignal (pharma) schema catalogue. Phase 4.
+pack: pharma
+title: PharmaSignal (pharma)
+tables:
+  hcp:
+    about: One row per healthcare professional (HCP) from Synthea providers.
+    primary_key: hcp_id
+    keywords: [hcp, hcps, doctor, doctors, clinician, prescriber, prescribers, provider, providers, speciality, specialty]
+    columns:
+      hcp_id: {type: VARCHAR, required: true, about: "e.g. HCP00001"}
+      synthea_provider_id: {type: VARCHAR, required: true}
+      organisation_id: {type: VARCHAR, references: organisation.organisation_id}
+      gender: {type: VARCHAR, hint: true}
+      speciality: {type: VARCHAR, hint: true}
+      state: {type: VARCHAR}
+ 
+  drug:
+    about: >-
+      One row per medication product (RxNorm code). label_drug names the
+      pharma-pack label drug the product contains, or NULL.
+    primary_key: drug_id
+    keywords: [drug, drugs, medication, medications, medicine, product, label, metformin, lisinopril, atorvastatin, simvastatin, amlodipine, hydrochlorothiazide, acetaminophen, ibuprofen, amoxicillin, warfarin]
+    columns:
+      drug_id: {type: VARCHAR, required: true, about: "e.g. DRG0001"}
+      rxnorm_code: {type: VARCHAR, required: true}
+      description: {type: VARCHAR, required: true, about: Synthea product name}
+      label_drug: {type: VARCHAR, about: "Label drug in lower case, e.g. 'metformin'. NULL if none", hint: true}
+      is_combination: {type: BOOLEAN, required: true, about: true for products with more than one ingredient}
+ 
+  prescription:
+    about: One row per prescription, with the prescriber (the HCP of the encounter).
+    primary_key: rx_id
+    person_dated: true
+    dates: [start_date]
+    keywords: [prescription, prescriptions, prescribed, taking, takes, take, rx, medication, dispenses]
+    columns:
+      rx_id: {type: VARCHAR, required: true, about: "e.g. RX0000001"}
+      person_id: {type: VARCHAR, required: true, references: person.person_id}
+      encounter_id: {type: VARCHAR, references: encounter.encounter_id}
+      hcp_id: {type: VARCHAR, references: hcp.hcp_id, about: Prescriber}
+      drug_id: {type: VARCHAR, required: true, references: drug.drug_id}
+      start_date: {type: DATE, required: true}
+      stop_date: {type: DATE, about: NULL means still active}
+      is_active: {type: BOOLEAN, required: true}
+      dispenses: {type: INTEGER}
+      total_cost: {type: DOUBLE}
+ 
+join_paths:
+  - prescription.drug_id = drug.drug_id
+  - prescription.hcp_id = hcp.hcp_id
+  - prescription.person_id = person.person_id
+  - prescription.encounter_id = encounter.encounter_id
+  - hcp.organisation_id = organisation.organisation_id
+ 
+examples:
+  - question: How many products contain amoxicillin?
+    sql: SELECT COUNT(*) AS products FROM drug WHERE label_drug = 'amoxicillin'
+  - question: How many HCPs have prescribed at least one combination product?
+    sql: >-
+      SELECT COUNT(DISTINCT r.hcp_id) AS hcps FROM prescription r
+      JOIN drug d ON d.drug_id = r.drug_id WHERE d.is_combination

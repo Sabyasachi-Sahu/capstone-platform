@@ -1,0 +1,98 @@
+# DataSteward (data governance) text-to-SQL test set.
+pack: datasteward
+questions:
+  - id: DS01
+    type: sql
+    question: How many tables and views are in the catalogue?
+    gold_sql: SELECT COUNT(*) FROM catalog_table
+  - id: DS02
+    type: sql
+    question: How many tables and views does each pack have?
+    gold_sql: SELECT pack, COUNT(*) FROM catalog_table GROUP BY pack
+  - id: DS03
+    type: sql
+    question: How many columns are foreign keys to another table?
+    gold_sql: SELECT COUNT(*) FROM catalog_column WHERE references_table IS NOT NULL
+  - id: DS04
+    type: sql
+    question: Which table has the most rows?
+    gold_sql: >-
+      SELECT table_name, row_count FROM catalog_table
+      ORDER BY row_count DESC LIMIT 1
+    match_columns: [0]
+    tie_sql: SELECT row_count FROM catalog_table ORDER BY row_count DESC LIMIT 2
+  - id: DS05
+    type: sql
+    question: How many defects were planted in total?
+    gold_sql: SELECT COUNT(*) FROM defect_register
+  - id: DS06
+    type: sql
+    question: How many planted defects are there of each defect type?
+    gold_sql: SELECT defect_type, COUNT(*) FROM defect_register GROUP BY defect_type
+  - id: DS07
+    type: sql
+    question: Which table has the most planted defects?
+    gold_sql: >-
+      SELECT table_name, COUNT(*) AS n FROM defect_register
+      GROUP BY table_name ORDER BY n DESC LIMIT 1
+    match_columns: [0]
+    tie_sql: >-
+      SELECT COUNT(*) AS n FROM defect_register
+      GROUP BY table_name ORDER BY n DESC LIMIT 2
+  - id: DS08
+    type: sql
+    question: How many data-quality findings were raised on the bronze layer?
+    gold_sql: SELECT COUNT(*) FROM dq_finding
+  - id: DS09
+    type: sql
+    question: How many data-quality findings matched a planted defect?
+    gold_sql: SELECT COUNT(*) FROM dq_finding WHERE defect_id IS NOT NULL
+  - id: DS10
+    type: sql
+    question: How many rows were removed between bronze and silver in total?
+    gold_sql: SELECT SUM(rows_removed) FROM quarantine_summary
+  - id: DS11
+    type: sql
+    question: How many rows were removed from the claim table, by reason?
+    gold_sql: >-
+      SELECT reason, rows_removed FROM quarantine_summary WHERE table_name = 'claim'
+  - id: DS12
+    type: sql
+    question: How many orphan defects were planted in the bank_transaction table?
+    gold_sql: >-
+      SELECT COUNT(*) FROM defect_register
+      WHERE table_name = 'bank_transaction' AND defect_type = 'orphan'
+  - id: DS13
+    type: sql
+    question: Which silver tables feed the gold person_360 view?
+    gold_sql: >-
+      SELECT source_table FROM lineage
+      WHERE target_layer = 'gold' AND target_table = 'person_360'
+  - id: DS14
+    type: sql
+    question: How many tables does the silver layer have, according to the lineage?
+    gold_sql: >-
+      SELECT COUNT(DISTINCT target_table) FROM lineage WHERE target_layer = 'silver'
+  - id: DS15
+    type: sql
+    question: How many required columns does the claim table have?
+    gold_sql: >-
+      SELECT COUNT(*) FROM catalog_column WHERE table_name = 'claim' AND is_required
+  - id: DS16
+    type: sql
+    question: What is the primary key of the payout table?
+    gold_sql: SELECT primary_key FROM catalog_table WHERE table_name = 'payout'
+  - id: DS17
+    type: sql
+    question: How many columns in the catalogue have the DATE data type?
+    gold_sql: SELECT COUNT(*) FROM catalog_column WHERE data_type = 'DATE'
+  - id: DS18
+    type: sql
+    question: How many tables have at least one planted defect?
+    gold_sql: SELECT COUNT(DISTINCT table_name) FROM defect_register
+  - id: DS19
+    type: unanswerable
+    question: Who approved the last change to the claim table schema?
+  - id: DS20
+    type: unanswerable
+    question: When was the encounter table last refreshed in Databricks?

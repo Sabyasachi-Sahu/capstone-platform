@@ -1,0 +1,99 @@
+# ClaimSense (insurance) text-to-SQL test set.
+pack: insurance
+questions:
+  - id: IS01
+    type: sql
+    question: How many policyholders are there?
+    gold_sql: SELECT COUNT(*) FROM policyholder
+  - id: IS02
+    type: sql
+    question: How many policies are there of each product?
+    gold_sql: SELECT product, COUNT(*) FROM policy GROUP BY product
+  - id: IS03
+    type: sql
+    question: How many policies are active?
+    gold_sql: SELECT COUNT(*) FROM policy WHERE status = 'active'
+  - id: IS04
+    type: sql
+    question: What is the average annual premium of Premium policies?
+    gold_sql: SELECT ROUND(AVG(annual_premium), 2) FROM policy WHERE product = 'Premium'
+  - id: IS05
+    type: sql
+    question: How many claims are there of each claim type?
+    gold_sql: SELECT claim_type, COUNT(*) FROM claim GROUP BY claim_type
+  - id: IS06
+    type: sql
+    question: How many claims were denied?
+    gold_sql: SELECT COUNT(*) FROM claim WHERE status = 'denied'
+  - id: IS07
+    type: sql
+    question: What is the total amount claimed across all claims?
+    gold_sql: SELECT ROUND(SUM(amount_claimed), 2) FROM claim
+  - id: IS08
+    type: sql
+    question: What is the total amount approved for pharmacy claims?
+    gold_sql: >-
+      SELECT ROUND(SUM(amount_approved), 2) FROM claim WHERE claim_type = 'pharmacy'
+  - id: IS09
+    type: sql
+    question: What percentage of claims were approved?
+    gold_sql: >-
+      SELECT ROUND(100.0 * AVG(CASE WHEN status = 'approved' THEN 1 ELSE 0 END), 2)
+      FROM claim
+  - id: IS10
+    type: sql
+    question: How many payouts were paid by cheque?
+    gold_sql: SELECT COUNT(*) FROM payout WHERE method = 'cheque'
+  - id: IS11
+    type: sql
+    question: What is the total amount paid out by bank transfer?
+    gold_sql: SELECT ROUND(SUM(amount), 2) FROM payout WHERE method = 'bank_transfer'
+  - id: IS12
+    type: sql
+    question: How many people have received at least one payout?
+    gold_sql: SELECT COUNT(DISTINCT person_id) FROM payout
+  - id: IS13
+    type: sql
+    question: What is the average number of days between a claim's service date and its submission?
+    gold_sql: >-
+      SELECT ROUND(AVG(date_diff('day', service_date, submitted_date)), 2) FROM claim
+  - id: IS14
+    type: sql
+    question: Which policy product has the highest total approved claim amount?
+    gold_sql: >-
+      SELECT p.product, SUM(c.amount_approved) AS total FROM claim c
+      JOIN policy p ON p.policy_id = c.policy_id
+      GROUP BY p.product ORDER BY total DESC LIMIT 1
+    match_columns: [0]
+    tie_sql: >-
+      SELECT ROUND(SUM(c.amount_approved), 0) AS total FROM claim c
+      JOIN policy p ON p.policy_id = c.policy_id
+      GROUP BY p.product ORDER BY total DESC LIMIT 2
+  - id: IS15
+    type: sql
+    question: How many claims were made on lapsed policies?
+    gold_sql: >-
+      SELECT COUNT(*) FROM claim c JOIN policy p ON p.policy_id = c.policy_id
+      WHERE p.status = 'lapsed'
+  - id: IS16
+    type: sql
+    question: How many policyholders have never made a claim?
+    gold_sql: >-
+      SELECT COUNT(*) FROM policyholder h WHERE NOT EXISTS
+      (SELECT 1 FROM claim c WHERE c.person_id = h.person_id)
+  - id: IS17
+    type: sql
+    question: What is the largest single payout amount?
+    gold_sql: SELECT MAX(amount) FROM payout
+  - id: IS18
+    type: sql
+    question: How many pending claims are there for each claim type?
+    gold_sql: >-
+      SELECT claim_type, COUNT(*) FROM claim WHERE status = 'pending'
+      GROUP BY claim_type
+  - id: IS19
+    type: unanswerable
+    question: What deductible applies to each policy?
+  - id: IS20
+    type: unanswerable
+    question: Which claims were flagged as fraudulent?
